@@ -1,0 +1,17 @@
+.primary-footer {
+    z-index: 50;
+    width: 100%;
+    min-width: 30rem;
+    height: 6rem;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
+    background-image: -webkit-linear-gradient(left,#194b93 0%,#215bb0 100%);
+    background-image: -moz-linear-gradient(left,#194b93 0%,#215bb0 100%);
+    background-image: -o-linear-gradient(left,#194b93 0%,#215bb0 100%);
+    background-image: linear-gradient(to right,#194b93 0%,#215bb0 100%);
+    color: #fff;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,149 @@
+
+<div class="container">
+ <div class="col-12 col-sm-12 center">
+    <mat-card class="mat-card">
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                <mat-card-title class="mat-card-header">Nomination Form</mat-card-title>
+            </div>
+            <mat-card-content>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="col-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Name" formControlName="name">
+                                    </mat-form-field>
+                                  </p>
+                               </div>
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Client Name" formControlName="clientName">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-radio-group aria-label="Select an option" formControlName="RadioFormControlgender" [(ngModel)]="gender">
+                                        <mat-radio-button value="1">Male</mat-radio-button>
+                                        <mat-radio-button value="2">Female</mat-radio-button>
+                                      </mat-radio-group>
+                                 </p>
+                               </div>
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Manager Enterprise Id" formControlName="managerId">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Enterprise Id" formControlName="enterpriseId">
+                                    </mat-form-field>
+                                  </p>
+                               </div>
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Location" formControlName="location">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6">
+                                 <mat-form-field appearance="fill">
+                                      <mat-label>Select your client role (required)</mat-label>
+                                      <select matNativeControl required [formControl]="selectFormControlRole" [(value)]="role" [(ngModel)]="role">
+                                        <option label="--select something --"></option>
+                                        <option value="BA">Bussiness Analyst</option>
+                                        <option value="SA">System Analyst</option>
+                                         <option value="TL">Tech Lead</option>
+                                        <option value="QA">QA</option>
+                                        <option value="D">Designer</option>
+                                      </select>
+                                      <mat-error *ngIf="selectFormControlRole.hasError('required')">
+                                        This field is required
+                                      </mat-error>
+                                      <mat-hint>You can pick up your role here</mat-hint>
+                                    </mat-form-field>
+                               </div>
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Primary Skill" formControlName="primarySkill">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6">
+                                 <mat-form-field appearance="fill">
+                                      <mat-label>Select your level (required)</mat-label>
+                                      <select matNativeControl required [formControl]="selectFormControlLevel" [(value)]="level" [(ngModel)]="level">
+                                        <option label="--select something --"></option>
+                                        <option value="SM">Senior Manager</option>
+                                        <option value="M">Manager</option>
+                                         <option value="AM">Associate Manager</option>
+                                        <option value="TL">Team Lead</option>
+                                        <option value="SSE">Senior Software Engineer</option>
+                                        <option value="ASE">Associate Software Engineer</option>
+                                      </select>
+                                      <mat-error *ngIf="selectFormControlLevel.hasError('required')">
+                                        This field is required
+                                      </mat-error>
+                                      <mat-hint>You can pick up your level here</mat-hint>
+                                    </mat-form-field>
+                               </div>
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Secondary Skill" formControlName="secondarySkill">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="IA/IG" formControlName="ia_ig">
+                                    </mat-form-field>
+                                  </p>
+                               </div>
+                            <div class="col-6 col-sm-6">
+                                <p>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Project" formControlName="project">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-checkbox [(ngModel)]="agreechecked"  [checked]="agreechecked" formControlName="selectFormControlAgree">
+                                    I Agree to Terms and Policies
+                                </mat-checkbox>
+                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 submit">
+                                <button type="submit" class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" mat-button color="accent">Submit</button>
+                             </div>
+                        </div> 
+                    </div>
+                </form>
+            </mat-card-content>
+        </div>
+        
+  </mat-card>
+  </div>
+ </div>
