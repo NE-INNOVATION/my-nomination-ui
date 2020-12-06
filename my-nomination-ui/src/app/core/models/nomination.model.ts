@@ -5,13 +5,13 @@ export class Nomination {
     role: string;
     level: string;
     project: string;
-    ia_ig: string;
+    ia_Ig: string;
     clientName: string;
     managerId: string;
     location: string;
     primarySkill: string;
     secondarySkill: string;
-    programId: number;
+    programId: string;
   
     constructor() {
       this.name = '';
@@ -19,12 +19,12 @@ export class Nomination {
       this.role = '';
       this.level = '';
       this.project = '';
-      this.ia_ig = '';
+      this.ia_Ig = '';
       this.clientName = '';
       this.managerId = '';
       this.primarySkill = '';
       this.secondarySkill = '';
-      this.programId = 0;
+      this.programId = '';
       this.location = '';
     }
   }

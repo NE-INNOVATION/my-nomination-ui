@@ -1,22 +1,24 @@
 export class NominationProgram {
+    name: string;
     description: string;
-    startdate: Date;
-    enddate: Date;
+    startDate: Date;
+    endDate: Date;
     nominationStartDate: Date;
     nominationEndDate: Date;
     courseAgenda: string;
     banner: string;
     userId: string;
-    programId: number;
+    programId: string;
   
     constructor() {
       this.description = '';
-      this.startdate = new Date();
+      this.startDate = new Date();
+      this.endDate = new Date();
       this.nominationStartDate = new Date();;
       this.nominationEndDate = new Date();
       this.courseAgenda = '';
       this.banner = '';
       this.userId = '';
-      this.programId = 0;
+      this.programId = "";
     }
   }

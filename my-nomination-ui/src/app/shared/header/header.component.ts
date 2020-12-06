@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import {MatDialog} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { ObervableService } from 'src/app/core/obeservable.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,27 @@ export class HeaderComponent implements OnInit {
   @ViewChild("toggleElement") ref: any;
   checked : boolean = false;
   slideLabel:string = "Log In";
-  constructor(public dialog: MatDialog) { }
+  isViewVisbile : boolean = false;
+  isSetupVisbile : boolean = false;
+
+  constructor(public dialog: MatDialog,
+     private _observableService : ObervableService,
+     private router: Router
+     ) {
+   
+    this._observableService.doLogin.subscribe(data =>
+      {
+        let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
+        if(!isSuccefull){
+          const dialogRef = this.dialog.open(LoginComponent);
+        }
+        this.isViewVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "view") ;
+        this.isSetupVisbile = (data.role.toLowerCase() == "admin");
+        this.checked = true;
+        this.slideLabel = "Log out";
+      });
+
+   }
 
   ngOnInit(): void {
   }
@@ -28,9 +50,17 @@ export class HeaderComponent implements OnInit {
       sessionStorage.setItem("userId","");
       sessionStorage.setItem("userRole","")
       sessionStorage.setItem("isLoginSuccessfull","false");
+      this.isSetupVisbile = false;
+      this.isViewVisbile = false;
+      this.router.navigate([''])
+      this.openDialog();
     }
   }
 
+  openView(){
+    this.router.navigate(['/view'])
+  }
+  
   openDialog() {
     const dialogRef = this.dialog.open(LoginComponent);
 
@@ -44,8 +74,14 @@ export class HeaderComponent implements OnInit {
       }else{
         this.ref._checked = false;
         this.slideLabel = "Log in";
+        this.isSetupVisbile = false;
+        this.isViewVisbile = false;
       }
     });
+  }
+
+  ngOnDestroy() {
+    
   }
 
 }

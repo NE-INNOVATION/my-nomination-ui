@@ -1,0 +1,85 @@
+<mat-card class="mat-card width">
+    <div class="row">
+        <div class="col-12 col-sm-12 center">
+            <mat-card-title class="mat-card-header">Nomination Detail</mat-card-title>
+        </div>
+        <mat-card-content class="width">
+           <div class="col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <p>
+                                <mat-label>Name: <b> {{nomination?.name}}</b></mat-label>
+                              </p>
+                           </div>
+                        <div class="col-8">
+                            <p>
+                                <mat-label>Client Name: <b> {{nomination?.clientName}}</b></mat-label>
+                              </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>
+                                <mat-label>Gender: <b> {{nomination?.gender}}</b></mat-label>
+                            </p>
+                           </div>
+                        <div class="col-8">
+                            <p>
+                                <mat-label>Manager Enterprise Id: <b> {{nomination?.managerId}}</b></mat-label>
+                              </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>
+                                <mat-label>Enterprise Id: <b> {{nomination?.enterpriseId}}</b></mat-label>
+                              </p>
+                           </div>
+                        <div class="col-8">
+                            <p>
+                                <mat-label>Location: <b> {{nomination?.location}}</b></mat-label>
+                              </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-label>Role: <b> {{nomination?.role}}</b></mat-label>
+                           </div>
+                        <div class="col-8">
+                            <p>
+                                <mat-label>Primary Skill: <b> {{nomination?.primarySkill}}</b></mat-label>
+                              </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-label>Level: <b> {{nomination?.level}}</b></mat-label>
+                           </div>
+                        <div class="col-8">
+                            <p>
+                                <mat-label>Secondary Skill: <b> {{nomination?.secondarySkill}}</b></mat-label>
+                              </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>
+                                <mat-label>IA/IG: <b> {{nomination?.ia_Ig}}</b></mat-label>
+                              </p>
+                           </div>
+                        <div class="col-8">
+                            <p>
+                                <mat-label>Project: <b> {{nomination?.project}}</b></mat-label>
+                              </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 center">
+                            <button  (click)="close()"  class="mat-focus-indicator mat-raised-button mat-button-base mat-primary btnmargin" mat-button color="accent">Close</button>
+                        </div>
+                    </div>
+                </div>
+        </mat-card-content>
+    </div>
+    
+</mat-card>

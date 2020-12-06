@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/core/models/user.model';
 import { NominationService } from 'src/app/core/nomination.service';
 import { Nomination } from '../core/models/nomination.model';
 
@@ -14,7 +13,7 @@ import { Nomination } from '../core/models/nomination.model';
 })
 export class NominationComponent implements OnInit {
 
-  programId : number = 0;
+  programId : string = "";
 
   constructor(public dialog: MatDialog,private _service: NominationService,
     private route: ActivatedRoute,
@@ -58,6 +57,12 @@ export class NominationComponent implements OnInit {
   });
 
   submit() {
+    
+    if(this.agreechecked === false){
+      this.openSnackBar("Please agree term and policies","",4000);
+      return;
+    }
+
     if (this.form.valid) {
       var nomination:Nomination = {
         name : this.form.get("name").value,
@@ -65,7 +70,7 @@ export class NominationComponent implements OnInit {
         role : this.role,
         enterpriseId : this.form.get("enterpriseId").value,
         location : this.form.get("location").value,
-        ia_ig : this.form.get("ia_ig").value,
+        ia_Ig : this.form.get("ia_Ig").value,
         managerId : this.form.get("managerId").value,
         primarySkill : this.form.get("primarySkill").value,
         secondarySkill : this.form.get("secondarySkill").value,
@@ -80,13 +85,13 @@ export class NominationComponent implements OnInit {
       response => {
         if(response !=null && response.name){
           sessionStorage.setItem("programId",this.programId.toString());
-          this.openSnackBar("Nomination submitted successfully for " + response.name,"");
+          this.openSnackBar("Nomination submitted successfully for " + response.name,"",15000);
          }else{
-          this.openSnackBar("Nomination failed or already exists for " + response.name,"");
+          this.openSnackBar("Nomination failed or already exists for " + response.name,"",15000);
          }
       },
       error => {
-        this.openSnackBar("Nomination failed or already exists for " + nomination.name,"");
+        this.openSnackBar("Nomination failed or already exists for " + nomination.name,"",15000);
         console.log(error)
       } 
      );
@@ -98,9 +103,10 @@ export class NominationComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string,duration : number) {
     this._snackBar.open(message, action, {
-      duration: 2000,
+      duration: duration,
+      panelClass: 'snackbar'
     });
   }
 

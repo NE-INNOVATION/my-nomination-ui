@@ -29,8 +29,8 @@
                             <div class="col-6 col-sm-6">
                                 <p>
                                     <mat-radio-group aria-label="Select an option" formControlName="RadioFormControlgender" [(ngModel)]="gender">
-                                        <mat-radio-button value="1">Male</mat-radio-button>
-                                        <mat-radio-button value="2">Female</mat-radio-button>
+                                        <mat-radio-button value="Male">Male</mat-radio-button>
+                                        <mat-radio-button value="Female">Female</mat-radio-button>
                                       </mat-radio-group>
                                  </p>
                                </div>
@@ -64,11 +64,11 @@
                                       <mat-label>Select your client role (required)</mat-label>
                                       <select matNativeControl required [formControl]="selectFormControlRole" [(value)]="role" [(ngModel)]="role">
                                         <option label="--select something --"></option>
-                                        <option value="BA">Bussiness Analyst</option>
-                                        <option value="SA">System Analyst</option>
-                                         <option value="TL">Tech Lead</option>
+                                        <option value="Bussiness Analyst">Bussiness Analyst</option>
+                                        <option value="System Analyst">System Analyst</option>
+                                         <option value="Tech Lead">Tech Lead</option>
                                         <option value="QA">QA</option>
-                                        <option value="D">Designer</option>
+                                        <option value="Designer">Designer</option>
                                       </select>
                                       <mat-error *ngIf="selectFormControlRole.hasError('required')">
                                         This field is required
@@ -90,12 +90,12 @@
                                       <mat-label>Select your level (required)</mat-label>
                                       <select matNativeControl required [formControl]="selectFormControlLevel" [(value)]="level" [(ngModel)]="level">
                                         <option label="--select something --"></option>
-                                        <option value="SM">Senior Manager</option>
-                                        <option value="M">Manager</option>
-                                         <option value="AM">Associate Manager</option>
-                                        <option value="TL">Team Lead</option>
-                                        <option value="SSE">Senior Software Engineer</option>
-                                        <option value="ASE">Associate Software Engineer</option>
+                                        <option value="Senior Manager">Senior Manager</option>
+                                        <option value="Manager">Manager</option>
+                                         <option value="Associate Manager">Associate Manager</option>
+                                        <option value="Team Lead">Team Lead</option>
+                                        <option value="Senior Software Engineer">Senior Software Engineer</option>
+                                        <option value="Associate Software Engineer">Associate Software Engineer</option>
                                       </select>
                                       <mat-error *ngIf="selectFormControlLevel.hasError('required')">
                                         This field is required
@@ -115,7 +115,7 @@
                             <div class="col-6 col-sm-6">
                                 <p>
                                     <mat-form-field>
-                                      <input type="text" matInput placeholder="IA/IG" formControlName="ia_ig">
+                                      <input type="text" matInput placeholder="IA/IG" formControlName="ia_Ig">
                                     </mat-form-field>
                                   </p>
                                </div>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <mat-checkbox [(ngModel)]="agreechecked"  [checked]="agreechecked" formControlName="selectFormControlAgree">
+                                <mat-checkbox [(ngModel)]="agreechecked"  [(checked)]="agreechecked" formControlName="selectFormControlAgree">
                                     I Agree to Terms and Policies
                                 </mat-checkbox>
                              </div>

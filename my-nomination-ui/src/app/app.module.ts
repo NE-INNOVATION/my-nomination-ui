@@ -23,6 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NominationComponent } from './nomination/nomination.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { ViewNominationsComponent } from './view-nominations/view-nominations.component';
+import { NominationDetailsComponent } from './nomination-details/nomination-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    NominationComponent
+    NominationComponent,
+    ViewNominationsComponent,
+    NominationDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HttpClientModule,
     MatRadioModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
