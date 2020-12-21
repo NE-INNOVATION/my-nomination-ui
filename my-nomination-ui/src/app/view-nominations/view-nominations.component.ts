@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { NominationProgram } from '../core/models/nomination-program.model';
 import { Nomination } from '../core/models/nomination.model';
 import { User } from '../core/models/user.model';
@@ -25,11 +26,19 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  constructor(private _service: NominationService,public dialog: MatDialog) { 
+  constructor(private _service: NominationService,public dialog: MatDialog,
+    private router: Router) { 
 
   }
 
   ngOnInit(): void {
+
+    let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
+        
+    if(!isSuccefull){
+      this.router.navigate([''])
+      return;
+    }
 
     let user:User = new User ();
     user.userId = sessionStorage.getItem("userId");

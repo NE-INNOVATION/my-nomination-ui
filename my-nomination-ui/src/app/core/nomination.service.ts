@@ -29,6 +29,10 @@ export class NominationService {
   return this._service.post(`${environment.serviceUrl}api/Programm/GetPrograms`, user);
 }
 
+getProgramById(programId:string) : Observable<NominationProgram> {
+  return this._service.get(`${environment.serviceUrl}api/Programm/GetProgramsById?programId=` + programId);
+}
+
 getNominations(programId:string) : Observable<Nomination[]> {
   return this._service.get(`${environment.serviceUrl}api/Nomination/GetNominations?programId=` + programId);
 }

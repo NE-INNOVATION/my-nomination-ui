@@ -14,6 +14,7 @@ import { Nomination } from '../core/models/nomination.model';
 export class NominationComponent implements OnInit {
 
   programId : string = "";
+  imageSrc:any = ""
 
   constructor(public dialog: MatDialog,private _service: NominationService,
     private route: ActivatedRoute,
@@ -39,7 +40,21 @@ export class NominationComponent implements OnInit {
   ngOnInit(): void {
 
     sessionStorage.setItem("isLoginSuccessfull","true");
-  
+
+    this._service.getProgramById(this.programId).subscribe(
+      response => {
+        if(response !=null && response.name){
+          sessionStorage.setItem("programId",this.programId.toString());
+          this.imageSrc = response.banner;
+         }else{
+          this.openSnackBar("Program does not exists for " + this.programId,"",15000);
+         }
+      },
+      error => {
+        console.log(error)
+      } 
+     );
+
   }
 
   form: FormGroup = new FormGroup({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { NominationProgram } from '../core/models/nomination-program.model';
 import { NominationService } from '../core/nomination.service';
 import { ViewImageComponent } from '../shared/view-image/view-image.component';
@@ -35,9 +36,15 @@ export class SetupProgramComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private _service: NominationService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit(): void {
+    let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
+        
+    if(!isSuccefull){
+      this.router.navigate([''])
+    }
   }
 
   get f(){
@@ -50,12 +57,6 @@ export class SetupProgramComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
 
-      if(event.target.files[0].type !== "image/jpeg" || event.target.files[0].type !== "image/png"){
-        alert("Plase upload valid jpeg/png file");
-        this.f.file.errors.required = true;
-        return;
-      }
-
       reader.readAsDataURL(file);
     
       reader.onload = () => {
@@ -67,7 +68,6 @@ export class SetupProgramComponent implements OnInit {
         this.setupForm.patchValue({
           fileSource: reader.result
         });
-   
       };
    
     }
