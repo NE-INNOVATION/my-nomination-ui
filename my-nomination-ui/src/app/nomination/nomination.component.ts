@@ -37,6 +37,8 @@ export class NominationComponent implements OnInit {
   level:string="";
 
   ngOnInit(): void {
+
+    sessionStorage.setItem("isLoginSuccessfull","true");
   
   }
 
@@ -51,7 +53,7 @@ export class NominationComponent implements OnInit {
     selectFormControlLevel: new FormControl(''),
     primarySkill: new FormControl('',Validators.required),
     secondarySkill: new FormControl(''),
-    ia_ig: new FormControl('',Validators.required),
+    ia_Ig: new FormControl('',Validators.required),
     project: new FormControl('',Validators.required),
     selectFormControlAgree: new FormControl('',Validators.required)
   });

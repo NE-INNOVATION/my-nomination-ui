@@ -3,7 +3,7 @@
       <div class="col-7 col-sm-7 left md-display-3"><h1>My Nomination</h1></div>
       <div class="col-6 col-sm-6 right">
          <button *ngIf="isViewVisbile" (click)="openView()"  class="mat-focus-indicator mat-raised-button mat-button-base mat-primary btnmargin" mat-button color="accent">View</button>
-         <button *ngIf="isSetupVisbile"  class="mat-focus-indicator mat-raised-button mat-button-base mat-primary btnmargin" mat-button color="accent">Setup</button>
+         <button *ngIf="isSetupVisbile" (click)="openSetup()"   class="mat-focus-indicator mat-raised-button mat-button-base mat-primary btnmargin" mat-button color="accent">Setup</button>
          <mat-slide-toggle #toggleElement (change)="toggle($event)" [(checked)]="checked" aria-checked="checked">{{slideLabel}}</mat-slide-toggle>
       </div>
    </div>

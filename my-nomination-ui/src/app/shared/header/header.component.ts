@@ -29,6 +29,11 @@ export class HeaderComponent implements OnInit {
         if(!isSuccefull){
           const dialogRef = this.dialog.open(LoginComponent);
         }
+
+        if(!data.role){
+          return;
+        }
+
         this.isViewVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "view") ;
         this.isSetupVisbile = (data.role.toLowerCase() == "admin");
         this.checked = true;
@@ -59,6 +64,10 @@ export class HeaderComponent implements OnInit {
 
   openView(){
     this.router.navigate(['/view'])
+  }
+
+  openSetup(){
+    this.router.navigate(['/setup'])
   }
   
   openDialog() {

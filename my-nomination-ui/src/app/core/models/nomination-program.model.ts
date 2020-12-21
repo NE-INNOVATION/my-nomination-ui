@@ -1,10 +1,10 @@
 export class NominationProgram {
     name: string;
     description: string;
-    startDate: Date;
-    endDate: Date;
-    nominationStartDate: Date;
-    nominationEndDate: Date;
+    startDate: string;
+    endDate: string;
+    nominationStartDate: string;
+    nominationEndDate: string;
     courseAgenda: string;
     banner: string;
     userId: string;
@@ -12,10 +12,10 @@ export class NominationProgram {
   
     constructor() {
       this.description = '';
-      this.startDate = new Date();
-      this.endDate = new Date();
-      this.nominationStartDate = new Date();;
-      this.nominationEndDate = new Date();
+      this.startDate = "00/12/1600";
+      this.endDate = "00/12/1600";
+      this.nominationStartDate = "00/12/1600";
+      this.nominationEndDate = "00/12/1600";
       this.courseAgenda = '';
       this.banner = '';
       this.userId = '';

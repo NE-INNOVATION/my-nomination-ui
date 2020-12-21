@@ -9,7 +9,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatCommonModule } from '@angular/material/core';
+import { MatCommonModule, MatNativeDateModule } from '@angular/material/core';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LoginComponent } from './shared/login/login.component';
@@ -26,8 +26,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ViewNominationsComponent } from './view-nominations/view-nominations.component';
 import { NominationDetailsComponent } from './nomination-details/nomination-details.component';
+import { SetupProgramComponent } from './setup-program/setup-program.component';
+import { ViewImageComponent } from './shared/view-image/view-image.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { NominationDetailsComponent } from './nomination-details/nomination-deta
     LoginComponent,
     NominationComponent,
     ViewNominationsComponent,
-    NominationDetailsComponent
+    NominationDetailsComponent,
+    SetupProgramComponent,
+    ViewImageComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,9 @@ import { NominationDetailsComponent } from './nomination-details/nomination-deta
     MatSnackBarModule,
     MatMenuModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

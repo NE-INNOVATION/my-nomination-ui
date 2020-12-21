@@ -1,0 +1,113 @@
+
+<div class="container">
+    <div class="col-12 col-sm-12 center">
+       <mat-card class="mat-card width">
+           <div class="row">
+               <div class="col-12 col-sm-12">
+                   <mat-card-title class="mat-card-header">Program Setup</mat-card-title>
+               </div>
+               <mat-card-content>
+                   <form [formGroup]="setupForm" (ngSubmit)="submit()">
+                       <div class="col-12 col-sm-12 width">
+                           <div class="row">
+                               <div class="col-6 col-sm-6">
+                                   <p>
+                                       <mat-form-field>
+                                         <input type="text" matInput placeholder="Name" formControlName="name">
+                                       </mat-form-field>
+                                     </p>
+                                  </div>
+                               <div class="col-6 col-sm-6">
+                                   <p>
+                                       <mat-form-field>
+                                         <textarea matInput placeholder="Description..." formControlName="description"></textarea>
+                                       </mat-form-field>
+                                     </p>
+                               </div>
+                           </div>
+                           <div class="row">
+                               <div class="col-6 col-sm-6">
+                                   <p>
+                                    <mat-form-field appearance="fill" color="primary">
+                                    <mat-label>Start Date</mat-label>
+                                    <input matInput [matDatepicker]="startDatePicker" formControlName="startDate">
+                                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #startDatePicker startView="year" color="accent" [startAt]="startDate"></mat-datepicker>
+                                    </mat-form-field>
+                                  </p>
+                                  </div>
+                               <div class="col-6 col-sm-6">
+                                   <p>
+                                    <mat-form-field appearance="fill" color="primary">
+                                    <mat-label>End Date</mat-label>
+                                    <input matInput [matDatepicker]="endDatePicker"  formControlName="endDate">
+                                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #endDatePicker startView="year" color="accent" [startAt]="endDate"></mat-datepicker>
+                                   </mat-form-field>  
+                                  </p>
+                               </div>
+                           </div>
+                           <div class="row">
+                               <div class="col-6 col-sm-6">
+                                   <p>
+                                    <mat-form-field appearance="fill" color="primary">
+                                        <mat-label>Nomination Start Date</mat-label>
+                                        <input matInput [matDatepicker]="nominationStartDatePicker" formControlName="nominationStartDate">
+                                        <mat-datepicker-toggle matSuffix [for]="nominationStartDatePicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #nominationStartDatePicker color="accent" startView="year" [startAt]="nominationStartDate"></mat-datepicker>
+                                   </mat-form-field>
+                                      </p>
+                                  </div>
+                               <div class="col-6 col-sm-6">
+                                   <p>
+                                    <mat-form-field appearance="fill" color="primary">
+                                       <mat-label>Nomination End Date</mat-label>
+                                        <input matInput [matDatepicker]="nominationEndDatePicker" formControlName="nominationEndDate">
+                                        <mat-datepicker-toggle matSuffix [for]="nominationEndDatePicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #nominationEndDatePicker color="accent" startView="year" [startAt]="nominationEndDate"></mat-datepicker>
+                                    </mat-form-field>
+                                      </p>
+                               </div>
+                           </div>
+                           <div class="row">
+                               <div class="col-6 col-sm-6">
+                                   <div class="row">
+                                       <div class="col-12">
+                                        <label for="file">Banner</label>
+                                        <input 
+                                            formControlName="file"
+                                            id="file" 
+                                            type="file" 
+                                            class="form-control"
+                                            (change)="onFileChange($event)">
+                                            <button type="button" *ngIf="imageSrc" mat-button color="accent" (click) ="view(); $event.preventDefault()">View Banner</button>
+                                           <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                                            <div *ngIf="f.file.errors.required">File is required.</div>
+                                          </div>
+                                       </div>
+                                   </div>
+                                     
+                                       
+                                   </div>
+                               <div class="col-6 col-sm-6">
+                                  <p>
+                                   
+                                    <mat-form-field>
+                                      <textarea matInput placeholder="Course Agenda..." formControlName="courseAgenda"></textarea>
+                                    </mat-form-field>
+                                  </p>
+                               </div>
+                           </div>
+                            <div class="row padding">
+                               <div class="col-12 submit">
+                                   <button type="submit" class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" mat-button color="accent">Submit</button>
+                                </div>
+                           </div> 
+                       </div>
+                   </form>
+               </mat-card-content>
+           </div>
+           
+     </mat-card>
+     </div>
+    </div>
