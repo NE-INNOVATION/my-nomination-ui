@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl : "https://localhost:5001/"
+  serviceUrl : "http://my-nomination-api-my-nomination.apps.azureneocp.neinnovation-ocp.com/"
 };
