@@ -96,13 +96,13 @@ export class SetupProgramComponent implements OnInit {
     this._service.submitProgram(nominationProgram).subscribe(
       response => {
         if(response !=null && response.name){
-          this.openSnackBar("Nomination submitted successfully for " + response.name,"",15000);
+          this.openSnackBar("Program submitted successfully","",15000);
          }else{
-          this.openSnackBar("Nomination failed or already exists for " + response.name,"",15000);
+          this.openSnackBar("Program submission failed or already exists","",15000);
          }
       },
       error => {
-        this.openSnackBar("Nomination failed or already exists for " + nominationProgram.name,"",15000);
+        this.openSnackBar("Program submission failed or already exists","",15000);
         console.log(error)
       } 
      );
