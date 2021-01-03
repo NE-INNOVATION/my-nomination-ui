@@ -91,8 +91,8 @@ export class NominationComponent implements OnInit {
         project : this.form.get("project").value,
         gender : this.form.get("RadioFormControlgender").value,
         level : this.level,
-        programId : this.programId
-
+        programId : this.programId,
+        approved:true
       }
 
      this._service.submitNomination(nomination).subscribe(

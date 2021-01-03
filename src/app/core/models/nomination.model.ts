@@ -12,6 +12,7 @@ export class Nomination {
     primarySkill: string;
     secondarySkill: string;
     programId: string;
+    approved: boolean;
   
     constructor() {
       this.name = '';
@@ -26,5 +27,6 @@ export class Nomination {
       this.secondarySkill = '';
       this.programId = '';
       this.location = '';
+      this.approved = false;
     }
   }

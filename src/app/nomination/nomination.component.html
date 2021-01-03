@@ -69,11 +69,14 @@
                                       <mat-label>Select your client role (required)</mat-label>
                                       <select matNativeControl required [formControl]="selectFormControlRole" [(value)]="role" [(ngModel)]="role">
                                         <option label="--select something --"></option>
+                                        <option value="Product Owner">Product Owner</option>
+                                        <option value="Scrum Master">Scrum Master</option>
+                                        <option value="Architect">Architect</option>
+                                        <option value="Designer">Designer</option>
                                         <option value="Bussiness Analyst">Bussiness Analyst</option>
                                         <option value="System Analyst">System Analyst</option>
                                          <option value="Tech Lead">Tech Lead</option>
                                         <option value="QA">QA</option>
-                                        <option value="Designer">Designer</option>
                                       </select>
                                       <mat-error *ngIf="selectFormControlRole.hasError('required')">
                                         This field is required
