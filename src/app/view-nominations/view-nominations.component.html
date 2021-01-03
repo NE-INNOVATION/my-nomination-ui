@@ -100,7 +100,7 @@
                       <ng-container matColumnDef="approved">
                         <th mat-header-cell *matHeaderCellDef>Approved</th>
                         <td mat-cell *matCellDef="let element">
-                          <mat-slide-toggle #toggleElement (change)="toggle($event,element.programId)" [(checked)]="element.approved" aria-checked="element.approved"></mat-slide-toggle>
+                          <mat-slide-toggle #toggleElement (change)="toggle($event,element.programId,element.enterpriseId)" [(checked)]="element.approved" aria-checked="element.approved"></mat-slide-toggle>
                           <span [hidden]="true"> {{element.approved}} </span>
                         </td>
                       

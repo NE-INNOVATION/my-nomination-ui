@@ -77,10 +77,10 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
     const dialogRef = this.dialog.open(NominationDetailsComponent);
   }
 
-  toggle(event: MatSlideToggleChange,programId:string) {
+  toggle(event: MatSlideToggleChange,programId:string,enterpriseId:string) {
     console.log('Toggle fired');
     let approved = event.checked
-    let nomination = this.nominations.find(x=>x.programId == programId);
+    let nomination = this.nominations.find(x=>x.programId == programId && x.enterpriseId == enterpriseId);
 
     nomination.approved = approved
 
