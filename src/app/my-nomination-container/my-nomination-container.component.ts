@@ -14,16 +14,23 @@ export class MyNominationContainerComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private router: Router,
     public dialog: MatDialog,) {
-      
-    route.params.subscribe(
-      (params) => {
-       let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
-        
-        if(!isSuccefull){
-          const dialogRef = this.dialog.open(LoginComponent);
-        }
-      });
+     
+    console.log(this.router.url); 
 
+    this.router.events.subscribe(
+      (event: any) => {
+        if (event instanceof NavigationEnd) {
+          console.log('this.router.url', this.router.url);
+          let isLoginSuccess = sessionStorage.getItem("isLoginSuccessfull");
+          
+          if(this.router.url.indexOf('nomination') <= 0 && !isLoginSuccess){
+            const dialogRef = this.dialog.open(LoginComponent);
+          }
+         
+        }
+      }
+    );
+    
    }
 
   ngOnInit(): void {

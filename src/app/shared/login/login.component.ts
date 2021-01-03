@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/view'])
          }else{
            this.errorLabel = "Please enter valid Username or Password";
+           sessionStorage.setItem("isLoginSuccessfull","false");
          }
       },
       error => console.log(error)

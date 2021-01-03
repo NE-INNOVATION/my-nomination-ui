@@ -26,6 +26,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ViewNominationsComponent } from './view-nominations/view-nominations.component';
 import { NominationDetailsComponent } from './nomination-details/nomination-details.component';
@@ -69,7 +70,8 @@ import { ViewImageComponent } from './shared/view-image/view-image.component';
     MatPaginatorModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

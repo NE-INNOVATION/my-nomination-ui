@@ -38,9 +38,6 @@ export class NominationComponent implements OnInit {
   level:string="";
 
   ngOnInit(): void {
-
-    sessionStorage.setItem("isLoginSuccessfull","true");
-
     this._service.getProgramById(this.programId).subscribe(
       response => {
         if(response !=null && response.name){

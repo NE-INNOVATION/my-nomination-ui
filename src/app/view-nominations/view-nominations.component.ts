@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -23,6 +24,7 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
   dataSource = new MatTableDataSource<Nomination>(this.nominations);
 
   program : NominationProgram;
+  selectedOption : string = "";
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -34,6 +36,7 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
   ngOnInit(): void {
 
     let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
+   
         
     if(!isSuccefull){
       this.router.navigate([''])
@@ -48,7 +51,8 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
       response => {
         if(response !=null && response.length > 0){
           this.programms = response as NominationProgram[];
-          this.onChange( this.programms[0].programId);
+          this.onChange(this.programms[0].programId);
+          this.selectedOption = this.programms[0].programId;
          }
       },
       error => {
@@ -75,8 +79,12 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
         response => {
           if(response !=null && response.length > 0){
             this.nominations = response as Nomination[];
-            this.dataSource = new MatTableDataSource<Nomination>(this.nominations);
            }
+           else
+           {
+            this.nominations = [];
+            }
+           this.dataSource = new MatTableDataSource<Nomination>(this.nominations);
         },
         error => {
           console.log(error)

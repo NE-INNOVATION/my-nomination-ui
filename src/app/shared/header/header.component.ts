@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
    
     this._observableService.doLogin.subscribe(data =>
       {
-        let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
-        if(!isSuccefull){
+        
+         if(this.router.url.indexOf('nomination') <= 0 && data.role == null){
           const dialogRef = this.dialog.open(LoginComponent);
         }
 
