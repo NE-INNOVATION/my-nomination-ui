@@ -23,7 +23,7 @@ export class MyNominationContainerComponent implements OnInit {
           console.log('this.router.url', this.router.url);
           let isLoginSuccess = sessionStorage.getItem("isLoginSuccessfull");
           
-          if(this.router.url.indexOf('nomination') <= 0 && !isLoginSuccess){
+          if((this.router.url.indexOf('nomination') <= 0 || this.router.url.indexOf('message') <= 0) && !isLoginSuccess){
             const dialogRef = this.dialog.open(LoginComponent);
           }
          

@@ -32,6 +32,7 @@ import { ViewNominationsComponent } from './view-nominations/view-nominations.co
 import { NominationDetailsComponent } from './nomination-details/nomination-details.component';
 import { SetupProgramComponent } from './setup-program/setup-program.component';
 import { ViewImageComponent } from './shared/view-image/view-image.component';
+import { MessageComponent } from './shared/message/message.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ViewImageComponent } from './shared/view-image/view-image.component';
     ViewNominationsComponent,
     NominationDetailsComponent,
     SetupProgramComponent,
-    ViewImageComponent
+    ViewImageComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

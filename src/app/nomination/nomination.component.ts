@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NominationService } from 'src/app/core/nomination.service';
 import { Nomination } from '../core/models/nomination.model';
 
@@ -18,6 +18,7 @@ export class NominationComponent implements OnInit {
 
   constructor(public dialog: MatDialog,private _service: NominationService,
     private route: ActivatedRoute,
+    private router: Router,
     private _snackBar: MatSnackBar) {
 
       route.params.subscribe(
@@ -41,10 +42,18 @@ export class NominationComponent implements OnInit {
     this._service.getProgramById(this.programId).subscribe(
       response => {
         if(response !=null && response.name){
+          let nominationEndDate = new Date(response.nominationEndDate); 
+          let today = new Date();
+          if(nominationEndDate < today){
+            this.router.navigate(['/message'], {state: {data: "Nomination date is already passed for program " + response.name}});
+          }
+
           sessionStorage.setItem("programId",this.programId.toString());
           this.imageSrc = response.banner;
-         }else{
+        
+          }else{
           this.openSnackBar("Program does not exists for " + this.programId,"",15000);
+          this.router.navigate(['/message'], {state: {data: "Program does not exists for " + this.programId}});
          }
       },
       error => {
@@ -100,12 +109,15 @@ export class NominationComponent implements OnInit {
         if(response !=null && response.name){
           sessionStorage.setItem("programId",this.programId.toString());
           this.openSnackBar("Nomination submitted successfully for " + response.name,"",15000);
+          this.router.navigate(['/message'], {state: {data: "Nomination submitted successfully for " + response.name}});
          }else{
           this.openSnackBar("Nomination failed or already exists for " + response.name,"",15000);
+          this.router.navigate(['/message'], {state: {data: "Nomination failed or already exists for " + response.name}});
          }
       },
       error => {
         this.openSnackBar("Nomination failed or already exists for " + nomination.name,"",15000);
+        this.router.navigate(['/message'], {state: {data: "Nomination failed or already exists for " + nomination.name}});
         console.log(error)
       } 
      );

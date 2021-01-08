@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     this._observableService.doLogin.subscribe(data =>
       {
         
-         if(this.router.url.indexOf('nomination') <= 0 && data.role == null){
+         if((this.router.url.indexOf('nomination') <= 0 && this.router.url.indexOf('message') <= 0)  && data.role == null){
           const dialogRef = this.dialog.open(LoginComponent);
         }
 
