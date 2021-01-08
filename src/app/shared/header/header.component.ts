@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openSetup(){
-    this.router.navigate(['/setup'])
+    this.router.navigate(['/viewsetup'])
   }
   
   openDialog() {

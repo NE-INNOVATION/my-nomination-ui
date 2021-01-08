@@ -5,6 +5,7 @@ import { NominationComponent } from './nomination/nomination.component';
 import { SetupProgramComponent } from './setup-program/setup-program.component';
 import { MessageComponent } from './shared/message/message.component';
 import { ViewNominationsComponent } from './view-nominations/view-nominations.component';
+import { ViewSetupComponent } from './view-setup/view-setup.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'nomination/:id', component: NominationComponent },
     { path: 'view', component: ViewNominationsComponent },
     { path: 'setup', component: SetupProgramComponent },
+    { path: 'viewsetup', component: ViewSetupComponent },
     { path: 'message', component: MessageComponent }
   ]}
 ];
