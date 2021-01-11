@@ -1,6 +1,6 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
 <div class="center">
-    <img id="logo" [src]="fullImagePath + '/training.jpg'" alt="Training logo" /> 
+    <img *ngIf="imgVisible"  id="logo" [src]="fullImagePath + '/training.jpg'" alt="Training logo" /> 
 </div>
 <app-footer></app-footer>
