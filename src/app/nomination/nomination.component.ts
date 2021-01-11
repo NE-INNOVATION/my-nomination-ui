@@ -37,11 +37,13 @@ export class NominationComponent implements OnInit {
   gender:string="1";
   role:string="";
   level:string="";
+  programName : string = "";
 
   ngOnInit(): void {
     this._service.getProgramById(this.programId).subscribe(
       response => {
         if(response !=null && response.name){
+          this.programName = response.name;
           let nominationEndDate = new Date(response.nominationEndDate); 
           let today = new Date();
           if(nominationEndDate < today){
@@ -101,7 +103,7 @@ export class NominationComponent implements OnInit {
         gender : this.form.get("RadioFormControlgender").value,
         level : this.level,
         programId : this.programId,
-        approved:true
+        approved:false
       }
 
      this._service.submitNomination(nomination).subscribe(
@@ -109,7 +111,7 @@ export class NominationComponent implements OnInit {
         if(response !=null && response.name){
           sessionStorage.setItem("programId",this.programId.toString());
           this.openSnackBar("Nomination submitted successfully for " + response.name,"",15000);
-          this.router.navigate(['/message'], {state: {data: "Nomination submitted successfully for " + response.name}});
+          this.router.navigate(['/message'], {state: {data: "Thank you for the nomination, you will receive an email to confirm your nomination shortly"}});
          }else{
           this.openSnackBar("Nomination failed or already exists for " + response.name,"",15000);
           this.router.navigate(['/message'], {state: {data: "Nomination failed or already exists for " + response.name}});

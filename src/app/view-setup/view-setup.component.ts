@@ -52,8 +52,14 @@ export class ViewSetupComponent implements OnInit {
      );
   }
 
+  edit(programId : string){
+    sessionStorage.setItem("editprogramId",programId);
+    this.router.navigate(['/setup'])
+  }
+
   addProgram(){
     this.router.navigate(['/setup'])
+    sessionStorage.setItem("editprogramId","");
   }
 
 }

@@ -13,26 +13,20 @@
                                <div class="col-6 col-sm-6">
                                    <p>
                                        <mat-form-field>
-                                         <input type="text" matInput placeholder="Name" formControlName="name">
+                                         <input type="text" matInput placeholder="Name" formControlName="name" [(ngModel)]="program.name">
                                        </mat-form-field>
                                      </p>
                                   </div>
-                               <div class="col-6 col-sm-6">
-                                   <p>
-                                       <mat-form-field>
-                                         <textarea matInput placeholder="Description..." formControlName="description"></textarea>
-                                       </mat-form-field>
-                                     </p>
-                               </div>
-                           </div>
+                          </div>
                            <div class="row">
                                <div class="col-6 col-sm-6">
                                    <p>
                                     <mat-form-field appearance="fill" color="primary">
                                     <mat-label>Start Date</mat-label>
-                                    <input matInput [matDatepicker]="startDatePicker" formControlName="startDate">
+                                    <input matInput [matDatepicker]="startDatePicker" [min] = "minStartDate" formControlName="startDate" [(ngModel)]="program.startDate">
                                     <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-                                    <mat-datepicker #startDatePicker startView="year" color="accent" [startAt]="startDate"></mat-datepicker>
+                                    <mat-datepicker #startDatePicker startView="month" color="accent" [startAt]="startDate" 
+                                    maxDate="maxStartDate"></mat-datepicker>
                                     </mat-form-field>
                                   </p>
                                   </div>
@@ -40,9 +34,9 @@
                                    <p>
                                     <mat-form-field appearance="fill" color="primary">
                                     <mat-label>End Date</mat-label>
-                                    <input matInput [matDatepicker]="endDatePicker"  formControlName="endDate">
+                                    <input matInput [matDatepicker]="endDatePicker" [min] = "program.startDate"  formControlName="endDate" [(ngModel)]="program.endDate">
                                     <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-                                    <mat-datepicker #endDatePicker startView="year" color="accent" [startAt]="endDate"></mat-datepicker>
+                                    <mat-datepicker #endDatePicker startView="month" color="accent" [startAt]="endDate"></mat-datepicker>
                                    </mat-form-field>  
                                   </p>
                                </div>
@@ -52,9 +46,9 @@
                                    <p>
                                     <mat-form-field appearance="fill" color="primary">
                                         <mat-label>Nomination Start Date</mat-label>
-                                        <input matInput [matDatepicker]="nominationStartDatePicker" formControlName="nominationStartDate">
+                                        <input matInput [matDatepicker]="nominationStartDatePicker" formControlName="nominationStartDate" [min]="nominationStartDate" [max]="program.startDate" [(ngModel)]="program.nominationStartDate">
                                         <mat-datepicker-toggle matSuffix [for]="nominationStartDatePicker"></mat-datepicker-toggle>
-                                        <mat-datepicker #nominationStartDatePicker color="accent" startView="year" [startAt]="nominationStartDate"></mat-datepicker>
+                                        <mat-datepicker #nominationStartDatePicker color="accent" startView="month" [startAt]="nominationStartDate"></mat-datepicker>
                                    </mat-form-field>
                                       </p>
                                   </div>
@@ -62,9 +56,9 @@
                                    <p>
                                     <mat-form-field appearance="fill" color="primary">
                                        <mat-label>Nomination End Date</mat-label>
-                                        <input matInput [matDatepicker]="nominationEndDatePicker" formControlName="nominationEndDate">
+                                        <input matInput [matDatepicker]="nominationEndDatePicker" formControlName="nominationEndDate" [min]="program.nominationStartDate" [max]="program.startDate" [(ngModel)]="program.nominationEndDate">
                                         <mat-datepicker-toggle matSuffix [for]="nominationEndDatePicker"></mat-datepicker-toggle>
-                                        <mat-datepicker #nominationEndDatePicker color="accent" startView="year" [startAt]="nominationEndDate"></mat-datepicker>
+                                        <mat-datepicker #nominationEndDatePicker color="accent" startView="month" [startAt]="nominationEndDate"></mat-datepicker>
                                     </mat-form-field>
                                       </p>
                                </div>
@@ -73,7 +67,7 @@
                             <div class="col-12 col-sm-12">
                                 <p>
                                   <mat-form-field class="textarea">
-                                    <textarea class="textarea" matInput placeholder="Course Agenda..." formControlName="courseAgenda"></textarea>
+                                    <textarea class="textarea" matInput placeholder="Course Agenda..." formControlName="courseAgenda" [(ngModel)]="program.courseAgenda"></textarea>
                                   </mat-form-field>
                                 </p>
                              </div>
@@ -98,6 +92,15 @@
                                      
                                        
                                    </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-12 col-sm-12">
+                                    <p>
+                                        <mat-form-field class="textarea">
+                                          <textarea matInput class="textarea" placeholder="Description..." formControlName="description" [(ngModel)]="program.description"></textarea>
+                                        </mat-form-field>
+                                      </p>
+                                </div>
                               </div>
                             <div class="row padding">
                                <div class="col-12 submit">

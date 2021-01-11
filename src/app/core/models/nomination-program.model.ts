@@ -12,10 +12,10 @@ export class NominationProgram {
   
     constructor() {
       this.description = '';
-      this.startDate = "00/12/1600";
-      this.endDate = "00/12/1600";
-      this.nominationStartDate = "00/12/1600";
-      this.nominationEndDate = "00/12/1600";
+      this.startDate = new Date().toString();
+      this.endDate = new Date().toString();
+      this.nominationStartDate = new Date().toString();
+      this.nominationEndDate = new Date().toString();
       this.courseAgenda = '';
       this.banner = '';
       this.userId = '';

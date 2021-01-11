@@ -15,17 +15,20 @@ import { ViewImageComponent } from '../shared/view-image/view-image.component';
 export class SetupProgramComponent implements OnInit {
 
   imageSrc: string;
-  startDate = new Date(1990, 0, 1);
-  endDate = new Date(1990, 0, 1);
-  nominationStartDate = new Date(1990, 0, 1);
-  nominationEndDate = new Date(1990, 0, 1);
+  startDate = new Date();
+  minStartDate = new Date();
+  endDate = new Date();
+  nominationStartDate = new Date();
+  nominationEndDate = new Date();
   viewbanner : boolean = false;
+  program:NominationProgram;
+  maxStartDate = new Date(this.minStartDate.getMonth() + 2);
 
 
   setupForm = new FormGroup({
    name: new FormControl('', [Validators.required]),
-   file: new FormControl('', [Validators.required]),
-   fileSource: new FormControl('', [Validators.required]),
+   file: new FormControl(''),
+   fileSource: new FormControl(''),
    courseAgenda: new FormControl('', [Validators.required]),
    description: new FormControl('', [Validators.required]),
    startDate: new FormControl('', [Validators.required]),
@@ -37,7 +40,11 @@ export class SetupProgramComponent implements OnInit {
   constructor(public dialog: MatDialog,
     private _service: NominationService,
     private _snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router) {
+
+      this.program = new NominationProgram()
+
+     }
 
   ngOnInit(): void {
     let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
@@ -45,6 +52,16 @@ export class SetupProgramComponent implements OnInit {
     if(!isSuccefull){
       this.router.navigate([''])
     }
+
+    let programId = sessionStorage.getItem("editprogramId");
+    if(programId){
+      this._service.getProgramById(programId).subscribe(
+        response => {
+          this.program = response;
+          this.imageSrc = response.banner;
+        })
+    }
+
   }
 
   get f(){
@@ -80,6 +97,11 @@ export class SetupProgramComponent implements OnInit {
 
   submit(){
 
+    if (this.setupForm.valid == false) {
+       return;
+    }
+
+    let programId = sessionStorage.getItem("editprogramId");
     var nominationProgram:NominationProgram = {
       name : this.setupForm.get("name").value,
       description : this.setupForm.get("description").value,
@@ -90,13 +112,14 @@ export class SetupProgramComponent implements OnInit {
       nominationStartDate : this.setupForm.get("nominationStartDate").value,
       courseAgenda : this.setupForm.get("courseAgenda").value,
       userId : sessionStorage.getItem("userId"),
-      programId:""
+      programId: (programId) ? programId :""
     }
 
     this._service.submitProgram(nominationProgram).subscribe(
       response => {
         if(response !=null && response.name){
           this.openSnackBar("Program submitted successfully","",15000);
+          this.router.navigate(['/viewsetup'])
          }else{
           this.openSnackBar("Program submission failed or already exists","",15000);
          }
