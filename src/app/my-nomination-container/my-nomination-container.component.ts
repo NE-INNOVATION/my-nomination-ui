@@ -11,6 +11,7 @@ import { LoginComponent } from '../shared/login/login.component';
 export class MyNominationContainerComponent implements OnInit {
 
   programId : string = "";
+  fullImagePath = '/assets/images';
 
   constructor(private route: ActivatedRoute,private router: Router,
     public dialog: MatDialog,) {
