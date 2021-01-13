@@ -39,7 +39,7 @@ export class ViewSetupComponent implements OnInit {
     user.userId = sessionStorage.getItem("userId");
     user.role = sessionStorage.getItem("userRole");
 
-    this._service.getPrograms(user).subscribe(
+    this._service.GetProgramsByUserId(user).subscribe(
       response => {
         if(response !=null && response.length > 0){
           this.programms = response as NominationProgram[];

@@ -38,12 +38,17 @@ export class NominationComponent implements OnInit {
   role:string="";
   level:string="";
   programName : string = "";
+  startDate : string = "";
+  endDate : string = "";
 
   ngOnInit(): void {
     this._service.getProgramById(this.programId).subscribe(
       response => {
         if(response !=null && response.name){
           this.programName = response.name;
+          this.startDate = response.startDate
+          this.endDate = response.endDate
+
           let nominationEndDate = new Date(response.nominationEndDate); 
           let today = new Date();
           if(nominationEndDate < today){
