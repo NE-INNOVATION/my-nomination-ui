@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl : "http://my-nomination-api-my-nomination.apps.azureneocp.neinnovation-ocp.com/"
+  serviceUrl : "http://my-nomination-api-my-nomination.apps.awsopenshift.ne-innovation.com/"
 };
