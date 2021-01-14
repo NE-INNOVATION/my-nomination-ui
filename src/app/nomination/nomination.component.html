@@ -41,12 +41,11 @@
                         <div class="row">
                             <div class="col-6 col-sm-6">
                                 <p>
-                                    <mat-radio-group aria-label="Select an option" formControlName="RadioFormControlgender" [(ngModel)]="gender">
-                                        <mat-radio-button value="Male">Male</mat-radio-button>
-                                        <mat-radio-button value="Female">Female</mat-radio-button>
-                                      </mat-radio-group>
-                                 </p>
-                               </div>
+                                    <mat-form-field>
+                                      <input type="text" matInput placeholder="Project" formControlName="project">
+                                    </mat-form-field>
+                                  </p>
+                            </div>
                             <div class="col-6 col-sm-6">
                                 <p>
                                     <mat-form-field>
@@ -130,22 +129,35 @@
                         <div class="row">
                             <div class="col-6 col-sm-6">
                                 <p>
-                                    <mat-form-field>
-                                      <input type="text" matInput placeholder="IA/IG" formControlName="ia_Ig">
-                                    </mat-form-field>
+                                  <mat-form-field appearance="fill">
+                                    <mat-label>Select your Business Group (required)</mat-label>
+                                    <select matNativeControl required [formControl]="selectFormControlBusinessGroup" [(value)]="bussinessGroup" [(ngModel)]="bussinessGroup">
+                                      <option label="--select--"></option>
+                                      <option value="CMT">CMT</option>
+                                      <option value="H&PS">H&PS</option>
+                                      <option value="ICI">ICI</option>
+                                      <option value="IES">IES</option>
+                                      <option value="FS">FS</option>
+                                      <option value="Products">Products</option>
+                                    </select>
+                                    <mat-error *ngIf="selectFormControlBusinessGroup.hasError('required')">
+                                      This field is required
+                                    </mat-error>
+                                    <mat-hint>You can pick up your business group here</mat-hint>
+                                  </mat-form-field>
                                   </p>
                                </div>
-                            <div class="col-6 col-sm-6">
+                               <div class="col-6 col-sm-6">
                                 <p>
                                     <mat-form-field>
-                                      <input type="text" matInput placeholder="Project" formControlName="project">
+                                      <input type="text" matInput placeholder="Training Approver" formControlName="approver">
                                     </mat-form-field>
                                   </p>
                             </div>
-                        </div>
+                          </div>
                         <div class="row">
                             <div class="col-12">
-                                <mat-checkbox [(ngModel)]="agreechecked"  [(checked)]="agreechecked" formControlName="selectFormControlAgree">
+                                <mat-checkbox [(ngModel)]="agreechecked" (change)="checkValue(agreechecked)"  [(checked)]="agreechecked" formControlName="selectFormControlAgree">
                                     I Agree to Terms and Policies
                                 </mat-checkbox>
                              </div>

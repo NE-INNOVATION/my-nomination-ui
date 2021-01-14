@@ -20,9 +20,9 @@
                     <div class="row">
                         <div class="col-4">
                             <p>
-                                <mat-label>Gender: <b> {{nomination?.gender}}</b></mat-label>
-                            </p>
-                           </div>
+                                <mat-label>Project: <b> {{nomination?.project}}</b></mat-label>
+                              </p>
+                        </div>
                         <div class="col-8">
                             <p>
                                 <mat-label>Manager Enterprise Id: <b> {{nomination?.managerId}}</b></mat-label>
@@ -64,15 +64,15 @@
                     <div class="row">
                         <div class="col-4">
                             <p>
-                                <mat-label>IA/IG: <b> {{nomination?.ia_Ig}}</b></mat-label>
+                                <mat-label>Business Group: <b> {{nomination?.bussinessGroup}}</b></mat-label>
                               </p>
                            </div>
-                        <div class="col-8">
+                           <div class="col-8">
                             <p>
-                                <mat-label>Project: <b> {{nomination?.project}}</b></mat-label>
+                                <mat-label>Training Approver: <b> {{nomination?.approver}}</b></mat-label>
                               </p>
-                        </div>
-                    </div>
+                           </div>
+                  </div>
                     <div class="row">
                         <div class="col-12 center">
                             <button  (click)="close()"  class="mat-focus-indicator mat-raised-button mat-button-base mat-primary btnmargin" mat-button color="accent">Close</button>

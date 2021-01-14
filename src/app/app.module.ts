@@ -34,6 +34,7 @@ import { SetupProgramComponent } from './setup-program/setup-program.component';
 import { ViewImageComponent } from './shared/view-image/view-image.component';
 import { MessageComponent } from './shared/message/message.component';
 import { ViewSetupComponent } from './view-setup/view-setup.component';
+import { TermConditionsComponent } from './term-conditions/term-conditions.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ViewSetupComponent } from './view-setup/view-setup.component';
     SetupProgramComponent,
     ViewImageComponent,
     MessageComponent,
-    ViewSetupComponent
+    ViewSetupComponent,
+    TermConditionsComponent
   ],
   imports: [
     BrowserModule,

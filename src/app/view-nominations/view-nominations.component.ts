@@ -23,7 +23,7 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
 
   programms : NominationProgram[] = [];
   nominations : Nomination[]= [];
-  displayedColumns: string[] = ['name', 'enterpriseId', 'ia_Ig','level','clientName', 'project','location', 'managerId','approved','view'];
+  displayedColumns: string[] = ['name', 'enterpriseId', 'bussinessGroup','level','clientName', 'project','location', 'managerId','approved','view'];
   dataSource = new MatTableDataSource<Nomination>(this.nominations);
   checked : boolean = false;
 

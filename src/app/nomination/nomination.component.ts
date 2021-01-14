@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NominationService } from 'src/app/core/nomination.service';
 import { Nomination } from '../core/models/nomination.model';
+import { TermConditionsComponent } from '../term-conditions/term-conditions.component';
 
 @Component({
   selector: 'app-nomination',
@@ -33,10 +34,12 @@ export class NominationComponent implements OnInit {
   selectFormControlRole = new FormControl('', Validators.required);
   selectFormControlLevel = new FormControl('', Validators.required);
   selectFormControlAgree = new FormControl('', Validators.requiredTrue);
-  agreechecked:boolean = false;
-  gender:string="1";
+  selectFormControlBusinessGroup= new FormControl('');
+
+  agreechecked:boolean = false;  
   role:string="";
   level:string="";
+  bussinessGroup:string="";
   programName : string = "";
   startDate : string = "";
   endDate : string = "";
@@ -69,6 +72,12 @@ export class NominationComponent implements OnInit {
      );
 
   }
+  
+  checkValue(agreechecked:boolean){
+    if(agreechecked){
+      this.dialog.open(TermConditionsComponent);
+    }
+  }
 
   form: FormGroup = new FormGroup({
     name: new FormControl('',Validators.required),
@@ -76,13 +85,13 @@ export class NominationComponent implements OnInit {
     managerId: new FormControl('',Validators.required),
     enterpriseId: new FormControl('',Validators.required),
     location: new FormControl(''),
-    RadioFormControlgender: new FormControl('',Validators.required),
     selectFormControlRole: new FormControl(''),
     selectFormControlLevel: new FormControl(''),
     primarySkill: new FormControl('',Validators.required),
     secondarySkill: new FormControl(''),
-    ia_Ig: new FormControl('',Validators.required),
+    selectFormControlBusinessGroup: new FormControl(''),
     project: new FormControl('',Validators.required),
+    approver: new FormControl('',Validators.required),
     selectFormControlAgree: new FormControl('',Validators.required)
   });
 
@@ -100,12 +109,12 @@ export class NominationComponent implements OnInit {
         role : this.role,
         enterpriseId : this.form.get("enterpriseId").value,
         location : this.form.get("location").value,
-        ia_Ig : this.form.get("ia_Ig").value,
+        bussinessGroup : this.bussinessGroup,
         managerId : this.form.get("managerId").value,
         primarySkill : this.form.get("primarySkill").value,
         secondarySkill : this.form.get("secondarySkill").value,
         project : this.form.get("project").value,
-        gender : this.form.get("RadioFormControlgender").value,
+        approver : this.form.get("approver").value,
         level : this.level,
         programId : this.programId,
         approved:false
@@ -130,10 +139,6 @@ export class NominationComponent implements OnInit {
      );
       
     }
-  }
-
-  close(){
-    this.dialog.closeAll();
   }
 
   openSnackBar(message: string, action: string,duration : number) {

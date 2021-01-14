@@ -32,7 +32,7 @@ export class MyNominationContainerComponent implements OnInit {
             this.imgVisible = false;
           }
           
-          if((this.router.url.indexOf('nomination') <= 0 || this.router.url.indexOf('message') <= 0) && !isLoginSuccess){
+          if((this.router.url.indexOf('nomination') <= 0 && this.router.url.indexOf('message') <= 0) && (isLoginSuccess === "false")){
             const dialogRef = this.dialog.open(LoginComponent);
           }
          

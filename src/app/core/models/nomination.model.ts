@@ -1,11 +1,10 @@
 export class Nomination {
     name: string;
-    gender: string;
     enterpriseId: string;
     role: string;
     level: string;
     project: string;
-    ia_Ig: string;
+    bussinessGroup: string;
     clientName: string;
     managerId: string;
     location: string;
@@ -13,14 +12,14 @@ export class Nomination {
     secondarySkill: string;
     programId: string;
     approved: boolean;
+    approver: string;
   
     constructor() {
       this.name = '';
-      this.gender = '';
       this.role = '';
       this.level = '';
       this.project = '';
-      this.ia_Ig = '';
+      this.bussinessGroup = '';
       this.clientName = '';
       this.managerId = '';
       this.primarySkill = '';
@@ -28,5 +27,6 @@ export class Nomination {
       this.programId = '';
       this.location = '';
       this.approved = false;
+      this.approver = '';
     }
   }
