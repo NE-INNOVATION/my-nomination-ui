@@ -35,6 +35,8 @@ import { ViewImageComponent } from './shared/view-image/view-image.component';
 import { MessageComponent } from './shared/message/message.component';
 import { ViewSetupComponent } from './view-setup/view-setup.component';
 import { TermConditionsComponent } from './term-conditions/term-conditions.component';
+import { CoursesComponent } from './courses/courses.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { TermConditionsComponent } from './term-conditions/term-conditions.compo
     ViewImageComponent,
     MessageComponent,
     ViewSetupComponent,
-    TermConditionsComponent
+    TermConditionsComponent,
+    CoursesComponent,
+    MessageModalComponent
   ],
   imports: [
     BrowserModule,

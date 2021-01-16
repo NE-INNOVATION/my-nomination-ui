@@ -135,6 +135,7 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
             this.nominations = [];
             }
            this.dataSource = new MatTableDataSource<Nomination>(this.nominations);
+           this.dataSource.paginator = this.paginator;
         },
         error => {
           console.log(error)

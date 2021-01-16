@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CoursesComponent } from './courses/courses.component';
 import { MyNominationContainerComponent } from './my-nomination-container/my-nomination-container.component';
 import { NominationComponent } from './nomination/nomination.component';
 import { SetupProgramComponent } from './setup-program/setup-program.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: '', component: MyNominationContainerComponent ,
   children: [
     { path: 'nomination/:id', component: NominationComponent },
+    { path: 'courses', component: CoursesComponent },
     { path: 'view', component: ViewNominationsComponent },
     { path: 'setup', component: SetupProgramComponent },
     { path: 'viewsetup', component: ViewSetupComponent },

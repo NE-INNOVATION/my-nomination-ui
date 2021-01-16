@@ -37,6 +37,10 @@ GetProgramsByUserId(user:User) : Observable<NominationProgram[]> {
   return this._service.post(`${environment.serviceUrl}api/Programm/GetProgramsByUserId`, user);
 }
 
+getAllActiveProgram() : Observable<NominationProgram[]> {
+  return this._service.get(`${environment.serviceUrl}api/Programm/GetActivePrograms`);
+}
+
 getProgramById(programId:string) : Observable<NominationProgram> {
   return this._service.get(`${environment.serviceUrl}api/Programm/GetProgramsById?programId=` + programId);
 }

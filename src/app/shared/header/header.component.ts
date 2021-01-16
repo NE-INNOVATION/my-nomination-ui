@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     this._observableService.doLogin.subscribe(data =>
       {
         
-         if((this.router.url.indexOf('nomination') <= 0 && this.router.url.indexOf('message') <= 0) && (data.role === null)){
+         if((this.router.url.indexOf('nomination') <= 0 && this.router.url.indexOf('message') <= 0 && this.router.url.indexOf('courses') <= 0) && (data.role === null)){
           const dialogRef = this.dialog.open(LoginComponent);
         }
 
@@ -34,8 +34,8 @@ export class HeaderComponent implements OnInit {
           return;
         }
 
-        this.isViewVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "view") ;
-        this.isSetupVisbile = (data.role.toLowerCase() == "admin");
+        this.isViewVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "superadmin" || data.role.toLowerCase() == "view") ;
+        this.isSetupVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "superadmin");
         this.checked = true;
         this.slideLabel = "Log out";
       });

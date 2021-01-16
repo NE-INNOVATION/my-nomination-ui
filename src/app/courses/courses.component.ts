@@ -1,22 +1,22 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NominationProgram } from '../core/models/nomination-program.model';
-import { User } from '../core/models/user.model';
 import { NominationService } from '../core/nomination.service';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
+import { MessageComponent } from '../shared/message/message.component';
 
 @Component({
-  selector: 'app-view-setup',
-  templateUrl: './view-setup.component.html',
-  styleUrls: ['./view-setup.component.scss']
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss']
 })
-export class ViewSetupComponent implements OnInit,AfterViewInit {
+export class CoursesComponent implements OnInit {
 
   programms : NominationProgram[] = [];
-  displayedColumns: string[] = ['programId','name', 'userId', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','edit'];
+  displayedColumns: string[] = ['programId','name', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','nominate'];
   dataSource = new MatTableDataSource<NominationProgram>(this.programms);
   checked : boolean = false;
 
@@ -30,19 +30,7 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
     private router: Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
-   
-        
-    if(!isSuccefull){
-      this.router.navigate([''])
-      return;
-    }
-
-    let user:User = new User ();
-    user.userId = sessionStorage.getItem("userId");
-    user.role = sessionStorage.getItem("userRole");
-
-    this._service.GetProgramsByUserId(user).subscribe(
+    this._service.getAllActiveProgram().subscribe(
       response => {
         if(response !=null && response.length > 0){
           this.programms = response as NominationProgram[];
@@ -62,18 +50,8 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
     sessionStorage.setItem("dialogText",description);
 }
 
-  edit(programId : string){
-    sessionStorage.setItem("editprogramId",programId);
-    this.router.navigate(['/setup'])
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
-  addProgram(){
-    this.router.navigate(['/setup'])
-    sessionStorage.setItem("editprogramId","");
+  nominate(programId: string){
+    this.router.navigate(['/nomination/'+ programId]);
   }
 
 }
