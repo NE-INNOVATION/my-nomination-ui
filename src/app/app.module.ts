@@ -37,6 +37,8 @@ import { ViewSetupComponent } from './view-setup/view-setup.component';
 import { TermConditionsComponent } from './term-conditions/term-conditions.component';
 import { CoursesComponent } from './courses/courses.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
+import { StatusPipe } from './core/models/status-pipe';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     ViewSetupComponent,
     TermConditionsComponent,
     CoursesComponent,
-    MessageModalComponent
+    MessageModalComponent,
+    StatusPipe,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

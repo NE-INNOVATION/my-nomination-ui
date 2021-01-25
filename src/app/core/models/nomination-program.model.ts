@@ -9,6 +9,8 @@ export class NominationProgram {
     banner: string;
     userId: string;
     programId: string;
+    isPublished : boolean;
+    status : number;
   
     constructor() {
       this.description = '';
@@ -20,5 +22,14 @@ export class NominationProgram {
       this.banner = '';
       this.userId = '';
       this.programId = "";
+      this.isPublished = false;
+      this.status = Status.Draft
     }
+  }
+
+  export enum Status {
+    Draft = 0,
+    Active = 1,
+    Hold = 2,
+    Deleted = 3,
   }

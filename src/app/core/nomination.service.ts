@@ -25,6 +25,10 @@ export class NominationService {
   return this._service.post(`${environment.serviceUrl}api/Nomination/UpdateNominations`, nomination );
 }
 
+updateProgram(program:NominationProgram) : Observable<NominationProgram> {
+  return this._service.post(`${environment.serviceUrl}api/Programm/UpdateProgram`, program );
+}
+
  submitProgram(nomination:NominationProgram) : Observable<NominationProgram> {
   return this._service.post(`${environment.serviceUrl}api/Programm/CreateProgram`, nomination );
 }

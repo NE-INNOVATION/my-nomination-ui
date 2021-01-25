@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { NominationProgram } from '../core/models/nomination-program.model';
+import { NominationProgram,Status } from '../core/models/nomination-program.model';
 import { NominationService } from '../core/nomination.service';
 import { ViewImageComponent } from '../shared/view-image/view-image.component';
 
@@ -24,6 +24,8 @@ export class SetupProgramComponent implements OnInit {
   viewbanner : boolean = false;
   program:NominationProgram;
   maxStartDate = new Date(this.minStartDate.getMonth() + 2);
+  status:number = Status.Draft;
+  isPublished:boolean = false;
 
 
   setupForm = new FormGroup({
@@ -60,6 +62,8 @@ export class SetupProgramComponent implements OnInit {
         response => {
           this.program = response;
           this.imageSrc = response.banner;
+          this.status = response.status;
+          this.isPublished = response.isPublished;
         })
     }
 
@@ -113,7 +117,9 @@ export class SetupProgramComponent implements OnInit {
       nominationStartDate : this.setupForm.get("nominationStartDate").value,
       courseAgenda : this.setupForm.get("courseAgenda").value,
       userId : sessionStorage.getItem("userId"),
-      programId: (programId) ? programId :""
+      programId: (programId) ? programId :"",
+      status : this.status,
+      isPublished : this.isPublished
     }
 
     this._service.submitProgram(nominationProgram).subscribe(

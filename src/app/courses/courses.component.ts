@@ -16,7 +16,7 @@ import { MessageComponent } from '../shared/message/message.component';
 export class CoursesComponent implements OnInit {
 
   programms : NominationProgram[] = [];
-  displayedColumns: string[] = ['programId','name', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','nominate'];
+  displayedColumns: string[] = ['programId','name', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','agenda','nominate'];
   dataSource = new MatTableDataSource<NominationProgram>(this.programms);
   checked : boolean = false;
 
@@ -44,9 +44,9 @@ export class CoursesComponent implements OnInit {
      );
   }
 
-  view(description:string){
+  view(description:string,title:string){
     this.dialog.open(MessageModalComponent)
-    sessionStorage.setItem("dialogTitle","Program Description");
+    sessionStorage.setItem("dialogTitle","Program " + title);
     sessionStorage.setItem("dialogText",description);
 }
 

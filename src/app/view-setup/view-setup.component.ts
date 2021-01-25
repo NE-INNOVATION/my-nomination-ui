@@ -1,12 +1,15 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { NominationProgram } from '../core/models/nomination-program.model';
+import { NominationProgram, Status } from '../core/models/nomination-program.model';
 import { User } from '../core/models/user.model';
 import { NominationService } from '../core/nomination.service';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-view-setup',
@@ -16,7 +19,7 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 export class ViewSetupComponent implements OnInit,AfterViewInit {
 
   programms : NominationProgram[] = [];
-  displayedColumns: string[] = ['programId','name', 'userId', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','edit'];
+  displayedColumns: string[] = ['programId','name', 'userId', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','publish','status','edit','delete'];
   dataSource = new MatTableDataSource<NominationProgram>(this.programms);
   checked : boolean = false;
 
@@ -27,7 +30,7 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
   @ViewChild('TABLE') table: ElementRef;
 
   constructor(private _service: NominationService,
-    private router: Router,public dialog: MatDialog) { }
+    private router: Router,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     let isSuccefull = JSON.parse(sessionStorage.getItem("isLoginSuccessfull"));
@@ -65,6 +68,72 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
   edit(programId : string){
     sessionStorage.setItem("editprogramId",programId);
     this.router.navigate(['/setup'])
+  }
+
+  publish(event: MatSlideToggleChange,programId:string){
+    console.log('Toggle fired');
+    let isPublished = event.checked
+    let program = this.programms.find(x=>x.programId == programId);
+
+    program.isPublished = isPublished
+    if(event.checked){
+      program.status = Status.Active;
+    }
+
+    this._service.updateProgram(program).subscribe(
+      response => {
+        if(response !=null && response.name){
+          this.openSnackBar("Program published successfully for " + response.name,"",15000);
+         }else{
+          this.openSnackBar("Publish failed for " + response.name,"",15000);
+         }
+      },
+      error => {
+        this.openSnackBar("Publish failed for " + program.name,"",15000);
+        console.log(error)
+      } 
+     );
+  }
+
+  openSnackBar(message: string, action: string,duration : number) {
+    this._snackBar.open(message, action, {
+      duration: duration,
+      panelClass: 'snackbar'
+    });
+  }
+
+  confirmDialog(programId:string): void {
+
+    let program = this.programms.find(x=>x.programId == programId);
+
+    const message = `Are you sure you want to delete this program?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+       if(dialogResult){
+        program.status = Status.Deleted;
+           
+        this._service.updateProgram(program).subscribe(
+          response => {
+            if(response !=null && response.name){
+              this.openSnackBar("Program deleted successfully","",15000);
+             }else{
+              this.openSnackBar("Deletion for " + response.name,"",15000);
+             }
+          },
+          error => {
+            this.openSnackBar("Deletion failed for " + program.name,"",15000);
+            console.log(error)
+          } 
+         );
+       }
+    });
   }
 
   ngAfterViewInit() {
