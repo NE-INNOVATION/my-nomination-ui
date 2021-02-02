@@ -13,6 +13,7 @@ import { NominationDetailsComponent } from '../nomination-details/nomination-det
 import * as XLSX from 'xlsx';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-view-nominations',
@@ -23,7 +24,7 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
 
   programms : NominationProgram[] = [];
   nominations : Nomination[]= [];
-  displayedColumns: string[] = ['name', 'enterpriseId', 'bussinessGroup','level','clientName', 'project','location', 'managerId','approved','view'];
+  displayedColumns: string[] = ['name', 'enterpriseId', 'bussinessGroup','level','clientName', 'project','location', 'managerId','approved','view','delete'];
   dataSource = new MatTableDataSource<Nomination>(this.nominations);
   checked : boolean = false;
 
@@ -119,6 +120,40 @@ export class ViewNominationsComponent implements OnInit,AfterViewInit  {
 
     /* save to file */
     XLSX.writeFile(wb, 'nominations.xlsx');
+  }
+
+  confirmDialog(programId:string,enterpriseId:string): void {
+
+    let nomination = this.nominations.find(x=>x.programId == programId && x.enterpriseId == enterpriseId);
+
+    const message = `Are you sure you want to delete this nomination permanently?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+       if(dialogResult){
+                             
+        this._service.deleteNominations(nomination).subscribe(
+          response => {
+            if(response !=null && response.name){
+              this.openSnackBar("Nomination deleted successfully","",15000);
+              this.onChange(this.selectedOption);
+             }else{
+              this.openSnackBar("Deletion failed for " + response.name,"",15000);
+             }
+          },
+          error => {
+            this.openSnackBar("Deletion failed for " + nomination.name,"",15000);
+            console.log(error)
+          } 
+         );
+       }
+    });
   }
 
   onChange(programId : string){

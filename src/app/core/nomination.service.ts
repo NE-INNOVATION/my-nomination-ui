@@ -29,6 +29,10 @@ updateProgram(program:NominationProgram) : Observable<NominationProgram> {
   return this._service.post(`${environment.serviceUrl}api/Programm/UpdateProgram`, program );
 }
 
+deleteNominations(nomination:Nomination) : Observable<Nomination> {
+  return this._service.post(`${environment.serviceUrl}api/Nomination/DeleteNominations`, nomination );
+}
+
  submitProgram(nomination:NominationProgram) : Observable<NominationProgram> {
   return this._service.post(`${environment.serviceUrl}api/Programm/CreateProgram`, nomination );
 }
