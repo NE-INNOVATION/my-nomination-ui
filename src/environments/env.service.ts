@@ -36,10 +36,10 @@ export enum Environment {
       if (/^.*localhost.*/.test(hostname)) {
         this._env = Environment.Local;
         this._apiUrl = 'https://localhost:5001/';
-      } else if (/^stage.apps.awsopenshift.ne-innovation/.test(hostname)) {
+      } else if (/^my-nomination-stage.apps.awsopenshift.ne-innovation.com/.test(hostname)) {
         this._env = Environment.Staging;
         this._apiUrl = 'http://my-nomination-api-my-nomination-stage.apps.awsopenshift.ne-innovation.com/';
-      } else if (/^apps.awsopenshift.ne-innovation/.test(hostname)) {
+      } else if (/^mynomination.apps.awsopenshift.ne-innovation.com/.test(hostname)) {
         this._env = Environment.Prod;
         this._apiUrl = 'http://my-nomination-api-my-nomination.apps.awsopenshift.ne-innovation.com/';
       } else {
