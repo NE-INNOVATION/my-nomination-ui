@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +39,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { StatusPipe } from './core/models/status-pipe';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { EnvService } from 'src/environments/env.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,12 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatNativeDateModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: (envService: EnvService) => () => envService.init(),
+    deps: [EnvService],
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
