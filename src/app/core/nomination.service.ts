@@ -41,6 +41,14 @@ deleteNominations(nomination:Nomination) : Observable<Nomination> {
   return this._service.post(`${this.envService.apiUrl}api/Programm/GetPrograms`, user);
 }
 
+getAllPrograms() : Observable<NominationProgram[]> {
+  return this._service.get(`${this.envService.apiUrl}api/Programm/GetAllPrograms`);
+}
+
+getAllNominations() : Observable<Nomination[]> {
+  return this._service.get(`${this.envService.apiUrl}api/Nomination/GetAllNominations`);
+}
+
 GetProgramsByUserId(user:User) : Observable<NominationProgram[]> {
   return this._service.post(`${this.envService.apiUrl}api/Programm/GetProgramsByUserId`, user);
 }

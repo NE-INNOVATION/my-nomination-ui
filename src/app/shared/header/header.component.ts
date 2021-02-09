@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { ObervableService } from 'src/app/core/obeservable.service';
 import { Router, RouterLink } from '@angular/router';
+import { NominationService } from 'src/app/core/nomination.service';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +12,23 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  private setting = {
+    element: {
+      dynamicDownload: null as HTMLElement
+    }
+  }
  
   @ViewChild("toggleElement") ref: any;
   checked : boolean = false;
   slideLabel:string = "Log In";
   isViewVisbile : boolean = false;
   isSetupVisbile : boolean = false;
+  isBackupVisbile : boolean = false;
 
   constructor(public dialog: MatDialog,
      private _observableService : ObervableService,
+     private _service: NominationService,
      private router: Router
      ) {
    
@@ -36,6 +45,7 @@ export class HeaderComponent implements OnInit {
 
         this.isViewVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "superadmin" || data.role.toLowerCase() == "view") ;
         this.isSetupVisbile = (data.role.toLowerCase() == "admin" || data.role.toLowerCase() == "superadmin");
+        this.isBackupVisbile = (data.role.toLowerCase() == "superadmin");
         this.checked = true;
         this.slideLabel = "Log out";
       });
@@ -64,6 +74,54 @@ export class HeaderComponent implements OnInit {
 
   openView(){
     this.router.navigate(['/view'])
+  }
+
+  backUp(){
+
+    this._service.getAllNominations().subscribe(
+      response => {
+        if(response !=null){
+          this.dyanmicDownloadByHtmlTag({
+            fileName: 'MyNominations',
+            text: JSON.stringify(response)
+          });
+         }
+      },
+      error => {
+        console.log(error)
+      } 
+     );
+
+     this._service.getAllPrograms().subscribe(
+      response => {
+        if(response !=null){
+          this.dyanmicDownloadByHtmlTag({
+            fileName: 'MyPrograms',
+            text: JSON.stringify(response)
+          });
+         }
+      },
+      error => {
+        console.log(error)
+      } 
+     );
+    
+  }
+
+  private dyanmicDownloadByHtmlTag(arg: {
+    fileName: string,
+    text: string
+  }) {
+    if (!this.setting.element.dynamicDownload) {
+      this.setting.element.dynamicDownload = document.createElement('a');
+    }
+    const element = this.setting.element.dynamicDownload;
+    const fileType = arg.fileName.indexOf('.json') > -1 ? 'text/json' : 'text/plain';
+    element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(arg.text)}`);
+    element.setAttribute('download', arg.fileName);
+
+    var event = new MouseEvent("click");
+    element.dispatchEvent(event);
   }
 
   openSetup(){
