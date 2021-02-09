@@ -66,6 +66,7 @@ export class HeaderComponent implements OnInit {
       sessionStorage.setItem("userRole","")
       sessionStorage.setItem("isLoginSuccessfull","false");
       this.isSetupVisbile = false;
+      this.isBackupVisbile = false;
       this.isViewVisbile = false;
       this.router.navigate([''])
       this.openDialog();
@@ -145,6 +146,7 @@ export class HeaderComponent implements OnInit {
         this.slideLabel = "Log in";
         this.isSetupVisbile = false;
         this.isViewVisbile = false;
+        this.isBackupVisbile = false;
       }
     });
   }
