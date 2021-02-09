@@ -78,11 +78,13 @@ export class HeaderComponent implements OnInit {
 
   backUp(){
 
+    let todaysDate = new Date();
+
     this._service.getAllNominations().subscribe(
       response => {
         if(response !=null){
           this.dyanmicDownloadByHtmlTag({
-            fileName: 'MyNominations',
+            fileName: 'MyNominations' + todaysDate.getDate() + todaysDate.getMonth() + + todaysDate.getFullYear(),
             text: JSON.stringify(response)
           });
          }
@@ -96,7 +98,7 @@ export class HeaderComponent implements OnInit {
       response => {
         if(response !=null){
           this.dyanmicDownloadByHtmlTag({
-            fileName: 'MyPrograms',
+            fileName: 'MyPrograms'  + todaysDate.getDate() + todaysDate.getMonth() + + todaysDate.getFullYear(),
             text: JSON.stringify(response)
           });
          }
