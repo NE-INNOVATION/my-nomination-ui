@@ -103,7 +103,34 @@
                           <mat-slide-toggle #toggleElement (change)="toggle($event,element.programId,element.enterpriseId)" [(checked)]="element.approved" aria-checked="element.approved"></mat-slide-toggle>
                           <span [hidden]="true"> {{element.approved}} </span>
                         </td>
-                      
+                      </ng-container>
+
+                      <ng-container matColumnDef="programId" >
+                        <th mat-header-cell *matHeaderCellDef [hidden]="true">Program Id</th>
+                        <td mat-cell *matCellDef="let element" [hidden]="true">
+                          <span [hidden]="true"> {{element.programId}} </span>
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="role" >
+                        <th mat-header-cell *matHeaderCellDef [hidden]="true">Role</th>
+                        <td mat-cell *matCellDef="let element" [hidden]="true">
+                          <span [hidden]="true"> {{element.role}} </span>
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="secondarySkill">
+                        <th mat-header-cell *matHeaderCellDef [hidden]="true">Secondary Skill</th>
+                        <td mat-cell *matCellDef="let element" [hidden]="true">
+                          <span [hidden]="true"> {{element.secondarySkill}} </span>
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="primarySkill">
+                        <th mat-header-cell *matHeaderCellDef [hidden]="true">Primary Skill</th>
+                        <td mat-cell *matCellDef="let element" [hidden]="true">
+                         <span [hidden]="true"> {{element.primarySkill}} </span>
+                        </td>
                       </ng-container>
 
                       <ng-container matColumnDef="view">
