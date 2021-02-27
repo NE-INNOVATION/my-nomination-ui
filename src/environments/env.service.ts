@@ -36,7 +36,7 @@ export enum Environment {
       if (/^.*localhost.*/.test(hostname)) {
         this._env = Environment.Local;
         this._apiUrl = 'https://localhost:5001/';
-      } else if (/^my-nomination-stage.apps.awsopenshift.ne-innovation.com/.test(hostname)) {
+      } else if (/^mynomination-api-stage.apps.awsopenshift.ne-innovation.com/.test(hostname)) {
         this._env = Environment.Staging;
         this._apiUrl = 'https://mynomination-api-stage.apps.awsopenshift.ne-innovation.com/';
       } else if (/^mynomination.apps.awsopenshift.ne-innovation.com/.test(hostname)) {
