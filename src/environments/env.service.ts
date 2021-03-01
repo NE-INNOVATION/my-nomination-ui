@@ -41,7 +41,7 @@ export enum Environment {
         this._apiUrl = 'https://mynomination-api-stage.apps.awsopenshift.ne-innovation.com/';
       } else if (/^mynomination.apps.awsopenshift.ne-innovation.com/.test(hostname)) {
         this._env = Environment.Prod;
-        this._apiUrl = 'http://my-nomination-api-my-nomination.apps.awsopenshift.ne-innovation.com/';
+        this._apiUrl = ' https://mynomination-api.apps.awsopenshift.ne-innovation.com/';
       } else {
         console.warn(`Cannot find environment for host name ${hostname}`);
       }
