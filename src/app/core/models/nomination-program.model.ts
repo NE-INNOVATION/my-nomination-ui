@@ -11,6 +11,8 @@ export class NominationProgram {
     programId: string;
     isPublished : boolean;
     status : number;
+    categoryId : string;
+    category: string
   
     constructor() {
       this.description = '';
@@ -22,6 +24,8 @@ export class NominationProgram {
       this.banner = '';
       this.userId = '';
       this.programId = "";
+      this.categoryId = '';
+      this.category = "";
       this.isPublished = false;
       this.status = Status.Draft
     }

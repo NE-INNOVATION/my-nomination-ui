@@ -5,6 +5,9 @@ import { User } from './models/user.model';
 import { Nomination } from './models/nomination.model';
 import { NominationProgram } from './models/nomination-program.model';
 import { EnvService } from 'src/environments/env.service';
+import { ProgramCategory } from './models/program-category.model';
+import { MoveNominationComponent } from '../move-nomination/move-nomination.component';
+import { NominationMove } from './models/nomination-move.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,11 @@ export class NominationService {
      return this._service.post(`${this.envService.apiUrl}api/Nomination/CreateNominations`, nomination );
  }
 
- updateNomination(nomination:Nomination) : Observable<Nomination> {
+ MoveNominations(nominationMove:NominationMove) : Observable<boolean> {
+  return this._service.post(`${this.envService.apiUrl}api/Nomination/MoveNominations`, nominationMove);
+}
+
+updateNomination(nomination:Nomination) : Observable<Nomination> {
   return this._service.post(`${this.envService.apiUrl}api/Nomination/UpdateNominations`, nomination );
 }
 
@@ -43,6 +50,14 @@ deleteNominations(nomination:Nomination) : Observable<Nomination> {
 
 getAllPrograms() : Observable<NominationProgram[]> {
   return this._service.get(`${this.envService.apiUrl}api/Programm/GetAllPrograms`);
+}
+
+GetProgramsForCategories(categoryId:string) : Observable<NominationProgram[]> {
+  return this._service.get(`${this.envService.apiUrl}api/Programm/GetProgramsForCategories?categoryId=` + categoryId);
+}
+
+GetAllProgramsCategories() : Observable<ProgramCategory[]> {
+  return this._service.get(`${this.envService.apiUrl}api/Programm/GetAllProgramsCategories`);
 }
 
 getAllNominations() : Observable<Nomination[]> {

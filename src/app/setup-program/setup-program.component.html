@@ -94,6 +94,24 @@
                                    </div>
                               </div>
                               <div class="row">
+                                <div class="col-12 col-sm-12 ">
+                                    <p>
+                                         <mat-form-field appearance="fill" class="select">
+                                            <mat-label>Select your program category (required)</mat-label>
+                                            <mat-select matNativeControl required [formControl]="selectFormControlCategory" [(value)]="selectedCategory" (selectionChange)="changeCategory($event.value)">
+                                                <mat-option *ngFor="let category of programCategories" [value]="category.categoryId">
+                                                    {{category.category}}
+                                                  </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="selectFormControlCategory.hasError('required')">
+                                              This field is required
+                                            </mat-error>
+                                            <mat-hint>You can pick up your program category here</mat-hint>
+                                          </mat-form-field>
+                                      </p>
+                                </div>
+                              </div>
+                              <div class="row">
                                 <div class="col-12 col-sm-12">
                                     <p>
                                         <mat-form-field class="textarea">

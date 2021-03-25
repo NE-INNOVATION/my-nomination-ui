@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NominationProgram,Status } from '../core/models/nomination-program.model';
+import { ProgramCategory } from '../core/models/program-category.model';
 import { NominationService } from '../core/nomination.service';
 import { ViewImageComponent } from '../shared/view-image/view-image.component';
 
@@ -26,7 +26,9 @@ export class SetupProgramComponent implements OnInit {
   maxStartDate = new Date(this.minStartDate.getMonth() + 2);
   status:number = Status.Draft;
   isPublished:boolean = false;
-
+  selectedCategory:string = "";
+  programCategories:ProgramCategory[] = [];
+  selectFormControlCategory = new FormControl('', Validators.required);
 
   setupForm = new FormGroup({
    name: new FormControl('', [Validators.required]),
@@ -37,10 +39,11 @@ export class SetupProgramComponent implements OnInit {
    startDate: new FormControl('', [Validators.required]),
    endDate: new FormControl('', [Validators.required]),
    nominationStartDate: new FormControl('', [Validators.required]),
-   nominationEndDate: new FormControl('', [Validators.required])
+   nominationEndDate: new FormControl('', [Validators.required]),
+   selectFormControlCategory: new FormControl('', [Validators.required]),
  });
 
-  constructor(public dialog: MatDialog,
+  constructor(public dialog: MatDialog,private cd: ChangeDetectorRef,
     private _service: NominationService,
     private _snackBar: MatSnackBar,
     private router: Router) {
@@ -56,6 +59,8 @@ export class SetupProgramComponent implements OnInit {
       this.router.navigate([''])
     }
 
+    this.getAllProgramsCategories();
+
     let programId = sessionStorage.getItem("editprogramId");
     if(programId){
       this._service.getProgramById(programId).subscribe(
@@ -64,6 +69,8 @@ export class SetupProgramComponent implements OnInit {
           this.imageSrc = response.banner;
           this.status = response.status;
           this.isPublished = response.isPublished;
+          this.setupForm.controls['selectFormControlCategory'].setValue(response.categoryId);
+          this.selectedCategory = response.categoryId
         })
     }
 
@@ -96,8 +103,28 @@ export class SetupProgramComponent implements OnInit {
 
   }
 
+  changeCategory(value) {
+    this.selectedCategory = value
+    this.setupForm.controls['selectFormControlCategory'].setValue(value);
+  }
+
   view(){
     const dialogRef = this.dialog.open(ViewImageComponent,{data : this.imageSrc});
+  }
+
+  getAllProgramsCategories(){
+    this._service.GetAllProgramsCategories().subscribe(
+      response => {
+        if(response !=null && response.length > 0){
+          this.programCategories = response as ProgramCategory[];
+          this.setupForm.controls['selectFormControlCategory'].setValue(response[0].categoryId);
+          this.selectedCategory = response[0].categoryId
+         }
+      },
+      error => {
+        console.log(error)
+      } 
+     );
   }
 
   submit(){
@@ -119,7 +146,9 @@ export class SetupProgramComponent implements OnInit {
       userId : sessionStorage.getItem("userId"),
       programId: (programId) ? programId :"",
       status : this.status,
-      isPublished : this.isPublished
+      isPublished : this.isPublished,
+      categoryId: this.selectedCategory,
+      category:  this.programCategories.find(i => i.categoryId === this.selectedCategory).category
     }
 
     this._service.submitProgram(nominationProgram).subscribe(

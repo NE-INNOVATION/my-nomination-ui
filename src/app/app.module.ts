@@ -40,6 +40,7 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
 import { StatusPipe } from './core/models/status-pipe';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { EnvService } from 'src/environments/env.service';
+import { MoveNominationComponent } from './move-nomination/move-nomination.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { EnvService } from 'src/environments/env.service';
     CoursesComponent,
     MessageModalComponent,
     StatusPipe,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    MoveNominationComponent
   ],
   imports: [
     BrowserModule,
