@@ -42,6 +42,7 @@ export class MoveNominationComponent implements OnInit {
         if(response !=null && response.length > 0){
           this.programms = response as NominationProgram[];
           this.RemoveElementFromObjectArray(this.data.program.programId)
+          if(this.programms.length <=0) return;
           this.selectedOption = this.programms[0].programId;
           this.onChange(this.selectedOption);
          }

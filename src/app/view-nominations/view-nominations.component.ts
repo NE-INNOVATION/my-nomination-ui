@@ -69,6 +69,7 @@ export class ViewNominationsComponent implements OnInit, AfterViewInit {
         if (response != null && response.length > 0) {
           this.programms = response as NominationProgram[];
           this.onChange(this.programms[0].programId);
+          if(this.programms.length <=0) return;
           this.selectedOption = this.programms[0].programId;
         }
       },
