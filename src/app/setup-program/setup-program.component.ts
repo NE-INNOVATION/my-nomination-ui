@@ -69,7 +69,6 @@ export class SetupProgramComponent implements OnInit {
           this.imageSrc = response.banner;
           this.status = response.status;
           this.isPublished = response.isPublished;
-          this.setupForm.controls['selectFormControlCategory'].setValue(response.categoryId);
           this.selectedCategory = response.categoryId
         })
     }
@@ -117,8 +116,6 @@ export class SetupProgramComponent implements OnInit {
       response => {
         if(response !=null && response.length > 0){
           this.programCategories = response as ProgramCategory[];
-          this.setupForm.controls['selectFormControlCategory'].setValue(response[0].categoryId);
-          this.selectedCategory = response[0].categoryId
          }
       },
       error => {
