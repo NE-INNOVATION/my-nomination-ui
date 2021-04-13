@@ -9,8 +9,9 @@ export class ObervableService {
   private _doLogin = new BehaviorSubject<User>({
     password : "",
     userId :sessionStorage.getItem("userId"),
+    categoryId:[],
     role:sessionStorage.getItem("userRole")});
- 
+    
   constructor() {}
 
   get doLogin() {

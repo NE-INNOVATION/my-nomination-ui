@@ -29,6 +29,7 @@ export class SetupProgramComponent implements OnInit {
   selectedCategory:string = "";
   programCategories:ProgramCategory[] = [];
   selectFormControlCategory = new FormControl('', Validators.required);
+  userId: string = '';
 
   setupForm = new FormGroup({
    name: new FormControl('', [Validators.required]),
@@ -70,6 +71,8 @@ export class SetupProgramComponent implements OnInit {
           this.status = response.status;
           this.isPublished = response.isPublished;
           this.selectedCategory = response.categoryId
+          this.setupForm.controls['selectFormControlCategory'].setValue(this.selectedCategory);
+          this.userId = response.userId;
         })
     }
 
@@ -140,7 +143,7 @@ export class SetupProgramComponent implements OnInit {
       nominationEndDate : this.setupForm.get("nominationEndDate").value,
       nominationStartDate : this.setupForm.get("nominationStartDate").value,
       courseAgenda : this.setupForm.get("courseAgenda").value,
-      userId : sessionStorage.getItem("userId"),
+      userId : (this.userId == null) ? sessionStorage.getItem("userId") : this.userId,
       programId: (programId) ? programId :"",
       status : this.status,
       isPublished : this.isPublished,

@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
       var user:User = {
         password : this.form.get("password").value,
         userId : this.form.get("username").value,
-        role : null
+        role : null,
+        categoryId:[]
       }
 
      this._service.login(user).subscribe(

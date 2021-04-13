@@ -52,6 +52,10 @@ getAllPrograms() : Observable<NominationProgram[]> {
   return this._service.get(`${this.envService.apiUrl}api/Programm/GetAllPrograms`);
 }
 
+getAllUsers() : Observable<User[]> {
+  return this._service.get(`${this.envService.apiUrl}api/Programm/GetAllUsers`);
+}
+
 GetProgramsForCategories(categoryId:string) : Observable<NominationProgram[]> {
   return this._service.get(`${this.envService.apiUrl}api/Programm/GetProgramsForCategories?categoryId=` + categoryId);
 }

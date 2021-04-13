@@ -131,6 +131,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/viewsetup'])
   }
   
+  openUsers(){
+    this.router.navigate(['/users'])
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(LoginComponent);
 

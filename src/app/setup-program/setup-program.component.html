@@ -98,7 +98,7 @@
                                     <p>
                                          <mat-form-field appearance="fill" class="select">
                                             <mat-label>Select your program category (required)</mat-label>
-                                            <mat-select matNativeControl required [formControl]="selectFormControlCategory" [(ngModel)]="selectedCategory" (selectionChange)="changeCategory($event.value)">
+                                            <mat-select matNativeControl required [formControl]="selectFormControlCategory" [value]="selectedCategory" [(ngModel)]="selectedCategory" (selectionChange)="changeCategory($event.value)">
                                                 <mat-option *ngFor="let category of programCategories" [value]="category.categoryId">
                                                     {{category.category}}
                                                   </mat-option>
