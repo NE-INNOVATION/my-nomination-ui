@@ -16,7 +16,7 @@ import { MessageComponent } from '../shared/message/message.component';
 export class CoursesComponent implements OnInit {
 
   programms : NominationProgram[] = [];
-  displayedColumns: string[] = ['programId','name', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','agenda','nominate'];
+  displayedColumns: string[] = ['programId','name','startDate', 'endDate','view','agenda','nominate'];
   dataSource = new MatTableDataSource<NominationProgram>(this.programms);
   checked : boolean = false;
 

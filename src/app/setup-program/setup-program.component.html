@@ -42,28 +42,6 @@
                                </div>
                            </div>
                            <div class="row">
-                               <div class="col-6 col-sm-6">
-                                   <p>
-                                    <mat-form-field appearance="fill" color="primary">
-                                        <mat-label>Nomination Start Date</mat-label>
-                                        <input matInput [matDatepicker]="nominationStartDatePicker" formControlName="nominationStartDate" [min]="nominationStartDate" [max]="program.startDate" [(ngModel)]="program.nominationStartDate">
-                                        <mat-datepicker-toggle matSuffix [for]="nominationStartDatePicker"></mat-datepicker-toggle>
-                                        <mat-datepicker #nominationStartDatePicker color="accent" startView="month" [startAt]="nominationStartDate"></mat-datepicker>
-                                   </mat-form-field>
-                                      </p>
-                                  </div>
-                               <div class="col-6 col-sm-6">
-                                   <p>
-                                    <mat-form-field appearance="fill" color="primary">
-                                       <mat-label>Nomination End Date</mat-label>
-                                        <input matInput [matDatepicker]="nominationEndDatePicker" formControlName="nominationEndDate" [min]="program.nominationStartDate" [max]="program.startDate" [(ngModel)]="program.nominationEndDate">
-                                        <mat-datepicker-toggle matSuffix [for]="nominationEndDatePicker"></mat-datepicker-toggle>
-                                        <mat-datepicker #nominationEndDatePicker color="accent" startView="month" [startAt]="nominationEndDate"></mat-datepicker>
-                                    </mat-form-field>
-                                      </p>
-                               </div>
-                           </div>
-                           <div class="row">
                             <div class="col-12 col-sm-12">
                                 <p>
                                   <mat-form-field class="textarea">

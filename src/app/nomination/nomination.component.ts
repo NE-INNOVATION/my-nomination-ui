@@ -52,10 +52,10 @@ export class NominationComponent implements OnInit {
           this.startDate = response.startDate
           this.endDate = response.endDate
 
-          let nominationEndDate = new Date(response.nominationEndDate); 
+          let startDate = new Date(response.startDate); 
           let today = new Date();
-          if(nominationEndDate < today){
-            this.router.navigate(['/message'], {state: {data: "Nomination date is already passed for program " + response.name}});
+          if(startDate < today){
+            this.router.navigate(['/message'], {state: {data: "Start date is already passed for program " + response.name}});
           }
 
           sessionStorage.setItem("programId",this.programId.toString());

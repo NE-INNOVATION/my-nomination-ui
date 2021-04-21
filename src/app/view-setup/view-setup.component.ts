@@ -19,7 +19,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../shared/confirm-di
 export class ViewSetupComponent implements OnInit,AfterViewInit {
 
   programms : NominationProgram[] = [];
-  displayedColumns: string[] = ['programId','name', 'userId', 'nominationStartDate','nominationEndDate','startDate', 'endDate','view','publish','status','edit','delete'];
+  displayedColumns: string[] = ['programId','name', 'userId','startDate', 'endDate','view','publish','status','edit','delete'];
   dataSource = new MatTableDataSource<NominationProgram>(this.programms);
   checked : boolean = false;
 

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NominationProgram,Status } from '../core/models/nomination-program.model';
 import { ProgramCategory } from '../core/models/program-category.model';
+import { User } from '../core/models/user.model';
 import { NominationService } from '../core/nomination.service';
 import { ViewImageComponent } from '../shared/view-image/view-image.component';
 
@@ -39,8 +40,6 @@ export class SetupProgramComponent implements OnInit {
    description: new FormControl('', [Validators.required]),
    startDate: new FormControl('', [Validators.required]),
    endDate: new FormControl('', [Validators.required]),
-   nominationStartDate: new FormControl('', [Validators.required]),
-   nominationEndDate: new FormControl('', [Validators.required]),
    selectFormControlCategory: new FormControl('', [Validators.required]),
  });
 
@@ -115,7 +114,10 @@ export class SetupProgramComponent implements OnInit {
   }
 
   getAllProgramsCategories(){
-    this._service.GetAllProgramsCategories().subscribe(
+    let user:User = new User ();
+    user.userId = sessionStorage.getItem("userId");
+    user.role = sessionStorage.getItem("userRole");
+    this._service.GetAllProgramsCategories(user).subscribe(
       response => {
         if(response !=null && response.length > 0){
           this.programCategories = response as ProgramCategory[];
@@ -140,8 +142,6 @@ export class SetupProgramComponent implements OnInit {
       endDate : this.setupForm.get("endDate").value,
       startDate : this.setupForm.get("startDate").value,
       banner : this.imageSrc,
-      nominationEndDate : this.setupForm.get("nominationEndDate").value,
-      nominationStartDate : this.setupForm.get("nominationStartDate").value,
       courseAgenda : this.setupForm.get("courseAgenda").value,
       userId : (this.userId == null) ? sessionStorage.getItem("userId") : this.userId,
       programId: (programId) ? programId :"",
