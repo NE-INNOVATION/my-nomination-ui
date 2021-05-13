@@ -58,6 +58,10 @@ export class NominationComponent implements OnInit {
             this.router.navigate(['/message'], {state: {data: "Start date is already passed for program " + response.name}});
           }
 
+          if(response.isClosed){
+            this.router.navigate(['/message'], {state: {data: "Registration is closed for program " + response.name}});
+          }
+
           sessionStorage.setItem("programId",this.programId.toString());
           this.imageSrc = response.banner;
         
