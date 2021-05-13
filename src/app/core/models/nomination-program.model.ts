@@ -8,6 +8,7 @@ export class NominationProgram {
     userId: string;
     programId: string;
     isPublished : boolean;
+    isClosed : boolean;
     status : number;
     categoryId : string;
     category: string
@@ -23,6 +24,7 @@ export class NominationProgram {
       this.categoryId = '';
       this.category = "";
       this.isPublished = false;
+      this.isClosed = false;
       this.status = Status.Draft
     }
   }

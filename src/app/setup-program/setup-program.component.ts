@@ -27,6 +27,7 @@ export class SetupProgramComponent implements OnInit {
   maxStartDate = new Date(this.minStartDate.getMonth() + 2);
   status:number = Status.Draft;
   isPublished:boolean = false;
+  isClosed:boolean = false;
   selectedCategory:string = "";
   programCategories:ProgramCategory[] = [];
   selectFormControlCategory = new FormControl('', Validators.required);
@@ -69,6 +70,7 @@ export class SetupProgramComponent implements OnInit {
           this.imageSrc = response.banner;
           this.status = response.status;
           this.isPublished = response.isPublished;
+          this.isClosed = response.isClosed;
           this.selectedCategory = response.categoryId
           this.setupForm.controls['selectFormControlCategory'].setValue(this.selectedCategory);
           this.userId = response.userId;
@@ -147,6 +149,7 @@ export class SetupProgramComponent implements OnInit {
       programId: (programId) ? programId :"",
       status : this.status,
       isPublished : this.isPublished,
+      isClosed:this.isClosed,
       categoryId: this.selectedCategory,
       category:  this.programCategories.find(i => i.categoryId === this.selectedCategory).category
     }

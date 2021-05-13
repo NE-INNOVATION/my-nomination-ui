@@ -19,7 +19,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../shared/confirm-di
 export class ViewSetupComponent implements OnInit,AfterViewInit {
 
   programms : NominationProgram[] = [];
-  displayedColumns: string[] = ['programId','name', 'userId','startDate', 'endDate','view','publish','status','edit','delete'];
+  displayedColumns: string[] = ['programId','name', 'userId','startDate', 'endDate','view','publish','close','status','edit','delete'];
   dataSource = new MatTableDataSource<NominationProgram>(this.programms);
   checked : boolean = false;
 
@@ -79,7 +79,7 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
     if(event.checked){
       program.status = Status.Active;
     }
-
+   
     this._service.updateProgram(program).subscribe(
       response => {
         if(response !=null && response.name){
@@ -90,6 +90,32 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
       },
       error => {
         this.openSnackBar("Publish failed for " + program.name,"",15000);
+        console.log(error)
+      } 
+     );
+  }
+
+  closeRegistration(event: MatSlideToggleChange,programId:string){
+    console.log('Toggle fired');
+    let isClosed = event.checked
+    let program = this.programms.find(x=>x.programId == programId);
+
+    program.isClosed = isClosed
+   
+    this._service.updateProgram(program).subscribe(
+      response => {
+        if(response !=null && response.name){
+          if(isClosed){
+            this.openSnackBar("Program registration closed successfully for " + response.name,"",15000);
+          }else{
+            this.openSnackBar("Program registration activated successfully for " + response.name,"",15000);
+          }
+         }else{
+          this.openSnackBar("Program registration closed failed for " + response.name,"",15000);
+         }
+      },
+      error => {
+        this.openSnackBar("Program registration closed failed for " + program.name,"",15000);
         console.log(error)
       } 
      );
