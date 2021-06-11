@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { User } from '../core/models/user.model';
-import { NominationService } from '../core/nomination.service';
+import { ProgramService } from '../core/program.service';
 
 @Component({
   selector: 'app-user',
@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('TABLE') table: ElementRef;
 
-  constructor(private _service: NominationService,private router: Router) {
+  constructor(private _service: ProgramService,private router: Router) {
 
    }
 

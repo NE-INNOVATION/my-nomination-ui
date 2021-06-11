@@ -2,9 +2,7 @@ import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/core/models/user.model';
-import { NominationService } from 'src/app/core/nomination.service';
-import { map, catchError } from "rxjs/operators";
-import { Observable, of } from 'rxjs';
+import { ProgramService } from 'src/app/core/program.service';
 import { ObervableService } from 'src/app/core/obeservable.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private _service: NominationService,
+  constructor(public dialog: MatDialog,private _service: ProgramService,
    private _observableService : ObervableService,
    private router: Router) { }
 

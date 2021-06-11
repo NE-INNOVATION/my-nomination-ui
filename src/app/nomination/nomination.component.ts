@@ -3,7 +3,8 @@ import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NominationService } from 'src/app/core/nomination.service';
+import { ProgramService } from '../core/program.service';
+import { NominationService } from '../core/nomination.service';
 import { Nomination } from '../core/models/nomination.model';
 import { TermConditionsComponent } from '../term-conditions/term-conditions.component';
 
@@ -17,7 +18,9 @@ export class NominationComponent implements OnInit {
   programId : string = "";
   imageSrc:any = ""
 
-  constructor(public dialog: MatDialog,private _service: NominationService,
+  constructor(public dialog: MatDialog,
+    private _service: ProgramService,
+    private _nominationService: NominationService,
     private route: ActivatedRoute,
     private router: Router,
     private _snackBar: MatSnackBar) {
@@ -124,7 +127,7 @@ export class NominationComponent implements OnInit {
         approved:false
       }
 
-     this._service.submitNomination(nomination).subscribe(
+     this._nominationService.submitNomination(nomination).subscribe(
       response => {
         if(response !=null && response.name){
           sessionStorage.setItem("programId",this.programId.toString());

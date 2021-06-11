@@ -8,6 +8,7 @@ import { NominationProgram } from '../core/models/nomination-program.model';
 import { Nomination } from '../core/models/nomination.model';
 import { User } from '../core/models/user.model';
 import { NominationService } from '../core/nomination.service';
+import { ProgramService } from '../core/program.service';
 import { NominationDetailsComponent } from '../nomination-details/nomination-details.component';
 
 import * as XLSX from 'xlsx';
@@ -39,7 +40,10 @@ export class ViewNominationsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('TABLE') table: ElementRef;
 
-  constructor(private _service: NominationService, public dialog: MatDialog,
+  constructor(
+    private _service: ProgramService,
+    private _nominationService: NominationService,
+     public dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar) {
 
@@ -140,7 +144,7 @@ export class ViewNominationsComponent implements OnInit, AfterViewInit {
 
     nomination.approved = approved
 
-    this._service.updateNomination(nomination).subscribe(
+    this._nominationService.updateNomination(nomination).subscribe(
       response => {
         if (response != null && response.name) {
           if (!nomination.approved) {
@@ -193,7 +197,7 @@ export class ViewNominationsComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
 
-        this._service.deleteNominations(nomination).subscribe(
+        this._nominationService.deleteNominations(nomination).subscribe(
           response => {
             if (response != null && response.name) {
               this.openSnackBar("Nomination deleted successfully", "", 15000);
@@ -215,7 +219,7 @@ export class ViewNominationsComponent implements OnInit, AfterViewInit {
     this.program = this.programms.filter(
       program => program.programId === programId)[0];
 
-    this._service.getNominations(programId).subscribe(
+    this._nominationService.getNominations(programId).subscribe(
       response => {
         if (response != null && response.length > 0) {
           this.nominations = response as Nomination[];

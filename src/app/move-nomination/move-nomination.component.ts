@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NominationMove } from '../core/models/nomination-move.model';
 import { NominationProgram } from '../core/models/nomination-program.model';
 import { User } from '../core/models/user.model';
+import { ProgramService } from '../core/program.service';
 import { NominationService } from '../core/nomination.service';
 
 @Component({
@@ -15,7 +16,8 @@ import { NominationService } from '../core/nomination.service';
 export class MoveNominationComponent implements OnInit {
 
   constructor(private router: Router,
-    private _service: NominationService,
+    private _service: ProgramService,
+    private _nominationService: NominationService,
     @Inject(MAT_DIALOG_DATA) public data: NominationMove,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
@@ -77,7 +79,7 @@ export class MoveNominationComponent implements OnInit {
     moveNomination.categoryId = this.data.categoryId;
     moveNomination.program = this.program;
 
-    this._service.MoveNominations(moveNomination).subscribe(
+    this._nominationService.MoveNominations(moveNomination).subscribe(
       response => {
         if(response !=null){
           this.openSnackBar("Nominations moved successfully to program " + this.program.name,"",15000);

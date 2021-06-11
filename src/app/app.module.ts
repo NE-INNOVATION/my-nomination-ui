@@ -28,6 +28,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTabsModule} from '@angular/material/tabs';
 import { ViewNominationsComponent } from './view-nominations/view-nominations.component';
 import { NominationDetailsComponent } from './nomination-details/nomination-details.component';
 import { SetupProgramComponent } from './setup-program/setup-program.component';
@@ -90,7 +91,8 @@ import { UserComponent } from './user/user.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

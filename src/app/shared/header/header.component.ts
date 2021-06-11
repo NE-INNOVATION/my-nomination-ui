@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { ObervableService } from 'src/app/core/obeservable.service';
 import { Router, RouterLink } from '@angular/router';
+import { ProgramService } from 'src/app/core/program.service';
 import { NominationService } from 'src/app/core/nomination.service';
 
 @Component({
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
      private _observableService : ObervableService,
-     private _service: NominationService,
+     private _service: ProgramService,
+     private _nominationService: NominationService,
      private router: Router
      ) {
    
@@ -81,7 +83,7 @@ export class HeaderComponent implements OnInit {
 
     let todaysDate = new Date();
 
-    this._service.getAllNominations().subscribe(
+    this._nominationService.getAllNominations().subscribe(
       response => {
         if(response !=null){
           this.dyanmicDownloadByHtmlTag({

@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NominationProgram, Status } from '../core/models/nomination-program.model';
 import { User } from '../core/models/user.model';
-import { NominationService } from '../core/nomination.service';
+import { ProgramService } from '../core/program.service';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../shared/confirm-dialog/confirm-dialog.component';
 
@@ -29,7 +29,7 @@ export class ViewSetupComponent implements OnInit,AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('TABLE') table: ElementRef;
 
-  constructor(private _service: NominationService,
+  constructor(private _service: ProgramService,
     private router: Router,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

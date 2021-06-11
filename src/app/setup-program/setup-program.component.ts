@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { NominationProgram,Status } from '../core/models/nomination-program.model';
 import { ProgramCategory } from '../core/models/program-category.model';
 import { User } from '../core/models/user.model';
-import { NominationService } from '../core/nomination.service';
+import { ProgramService } from '../core/program.service';
 import { ViewImageComponent } from '../shared/view-image/view-image.component';
 
 @Component({
@@ -45,7 +45,7 @@ export class SetupProgramComponent implements OnInit {
  });
 
   constructor(public dialog: MatDialog,private cd: ChangeDetectorRef,
-    private _service: NominationService,
+    private _service: ProgramService,
     private _snackBar: MatSnackBar,
     private router: Router) {
 

@@ -4,57 +4,110 @@
             <div class="row center">
               <h2>NE TALENT ENABLEMENT SESSIONS</h2>
             </div>
-            <div class="mat-elevation-z8" #TABLE>
-                <table mat-table #table [dataSource]="dataSource">
-                 <!-- Name Column -->
-                  <ng-container matColumnDef="programId">
-                    <th mat-header-cell *matHeaderCellDef> Program Id </th>
-                    <td mat-cell *matCellDef="let element"> {{element.programId}} </td>
-                  </ng-container>
-              
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <diV>
+              <mat-tab-group mat-align-tabs="end">
+                <mat-tab label="Active Courses">
+                  <div class="mat-elevation-z8" #TABLE>
+                    <table mat-table #table [dataSource]="dataSource">
+                     <!-- Name Column -->
+                      <ng-container matColumnDef="programId">
+                        <th mat-header-cell *matHeaderCellDef> Program Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.programId}} </td>
                       </ng-container>
-                      
-                  <ng-container matColumnDef="startDate">
-                    <th mat-header-cell *matHeaderCellDef> Start Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.startDate| date}} </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="endDate">
-                    <th mat-header-cell *matHeaderCellDef> End Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.endDate| date}} </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="view">
-                    <th mat-header-cell *matHeaderCellDef>Description</th>
-                    <td mat-cell *matCellDef="let element">
-                        <button mat-button color="accent"  (click) ="view(element.description,'Description')">View</button>
-                    </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="agenda">
-                    <th mat-header-cell *matHeaderCellDef>Course Agenda</th>
-                    <td mat-cell *matCellDef="let element">
-                        <button mat-button color="accent"  (click) ="view(element.courseAgenda,'Course Agenda')">View</button>
-                    </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="nominate">
-                    <th mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let element">
-                        <button mat-button color="accent"  (click) ="nominate(element.programId)">Nominate</button>
-                    </td>
-                  </ng-container>
-              
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-              
-                <mat-paginator [pageSizeOptions]="[10,20,30,40]" showFirstLastButtons></mat-paginator>
-              </div>
+                  
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+                          
+                      <ng-container matColumnDef="startDate">
+                        <th mat-header-cell *matHeaderCellDef> Start Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.startDate| date}} </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="endDate">
+                        <th mat-header-cell *matHeaderCellDef> End Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.endDate| date}} </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="view">
+                        <th mat-header-cell *matHeaderCellDef>Description</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button color="accent"  (click) ="view(element.description,'Description')">View</button>
+                        </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="agenda">
+                        <th mat-header-cell *matHeaderCellDef>Course Agenda</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button color="accent"  (click) ="view(element.courseAgenda,'Course Agenda')">View</button>
+                        </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="nominate">
+                        <th mat-header-cell *matHeaderCellDef> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button color="accent"  (click) ="nominate(element.programId)">Nominate</button>
+                        </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                    <mat-paginator #activePaginator [pageSizeOptions]="[10,20,30,40]" showFirstLastButtons></mat-paginator>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Completed Courses">
+                  <div class="mat-elevation-z8" #TABLE>
+                    <table mat-table #completedtable [dataSource]="compeletedDataSource">
+                     <!-- Name Column -->
+                      <ng-container matColumnDef="programId">
+                        <th mat-header-cell *matHeaderCellDef> Program Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.programId}} </td>
+                      </ng-container>
+                  
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+                          
+                      <ng-container matColumnDef="startDate">
+                        <th mat-header-cell *matHeaderCellDef> Start Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.startDate| date}} </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="endDate">
+                        <th mat-header-cell *matHeaderCellDef> End Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.endDate| date}} </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="view">
+                        <th mat-header-cell *matHeaderCellDef>Description</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button color="accent"  (click) ="view(element.description,'Description')">View</button>
+                        </td>
+                      </ng-container>
+    
+                      <ng-container matColumnDef="agenda">
+                        <th mat-header-cell *matHeaderCellDef>Course Agenda</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button color="accent"  (click) ="view(element.courseAgenda,'Course Agenda')">View</button>
+                        </td>
+                      </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="completedDisplayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: completedDisplayedColumns;"></tr>
+                    </table>
+                  
+                    <mat-paginator #completedPaginator [pageSizeOptions]="[10,20,30,40]" showFirstLastButtons></mat-paginator>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </diV>
+           
         </mat-card>
     </div>
 </div>    
